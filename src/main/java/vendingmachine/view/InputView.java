@@ -9,7 +9,7 @@ public class InputView {
         String input;
         do {
             input = Console.readLine();
-        } while (InputValidator.notValidInputMoney(input));
+        } while (InputValidator.isNotValidInputMoney(input));
         return Integer.parseInt(input);
     }
 
