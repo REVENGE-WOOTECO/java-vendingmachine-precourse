@@ -24,4 +24,8 @@ public class VendingMachine {
         Map<Integer, Integer> smallChange = coinRepository.getSavedCoin();
         PrintView.printSmallChange(smallChange);
     }
+
+    public void makeOrderList() {
+        String orderList = InputView.requestItemList();
+    }
 }

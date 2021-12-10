@@ -4,7 +4,8 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
-    private static final Pattern patternForNumber = Pattern.compile("^[0-9]+");
+    private static final Pattern patternForNumber = Pattern.compile("^[\\d]+");
+    private static final Pattern patternForItemInfo = Pattern.compile("^\\[[ㄱ-ㅎ가-힣a-zA-Z]+,[\\d]+,[\\d]+]$");
 
     public static boolean isNotValidInputMoney(String input) {
         if (isNotValidNumber(input)) {
@@ -18,16 +19,15 @@ public class InputValidator {
 
     private static boolean isNotValidNumber(String input) {
         try {
-            requestValidationToPattern(input);
+            requestValidationToNumberPattern(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
         }
-        requestValidationToPattern(input);
         return false;
     }
 
-    private static void requestValidationToPattern(String input) {
+    private static void requestValidationToNumberPattern(String input) {
         if (!patternForNumber.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 0 이상의 숫자만 입력하세요.");
         }
@@ -49,4 +49,28 @@ public class InputValidator {
         }
     }
 
+    public static boolean isNotValidItemList(String[] split) {
+        for (String unitItemInfo : split) {
+            if (isNotValidItemInfo(unitItemInfo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isNotValidItemInfo(String unitItemInfo) {
+        try {
+            requestValidationToItemPattern(unitItemInfo);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    private static void requestValidationToItemPattern(String unitItemInfo) {
+        if (!patternForItemInfo.matcher(unitItemInfo).matches()) {
+            throw new IllegalArgumentException("[ERROR] 올바른 패턴을 입력하세요. 예시는 다음과 같습니다 : [사이다,1000,10]");
+        }
+    }
 }

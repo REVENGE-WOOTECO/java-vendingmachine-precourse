@@ -13,4 +13,8 @@ public class PrintView {
             System.out.println(coinValue + "원 - " + smallChange.get(coinValue) + "개");
         }
     }
+
+    public static void requestItemInformation() {
+        System.out.println("\n상품명과 가격, 수량을 입력해 주세요.");
+    }
 }

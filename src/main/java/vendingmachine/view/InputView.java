@@ -13,4 +13,12 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public static String requestItemList() {
+        PrintView.requestItemInformation();
+        String input;
+        do {
+            input = Console.readLine();
+        } while (InputValidator.isNotValidItemList(input.split(";")));
+        return input;
+    }
 }
