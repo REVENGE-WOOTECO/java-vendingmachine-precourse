@@ -1,5 +1,6 @@
 package vendingmachine.model;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,5 +34,19 @@ public class CoinRepository {
                 coin -= randomCoinValue;
             }
         }
+    }
+
+    public Map<Integer, Integer> getSavedCoin() {
+        return savedCoin;
+    }
+
+    public Map<Integer, Integer> showHaveCoin() {
+        Map<Integer, Integer> smallChange = new LinkedHashMap<>();
+        for (Integer coinValue : savedCoin.keySet()) {
+            if (savedCoin.get(coinValue) != 0) {
+                smallChange.put(coinValue, savedCoin.get(coinValue));
+            }
+        }
+        return smallChange;
     }
 }

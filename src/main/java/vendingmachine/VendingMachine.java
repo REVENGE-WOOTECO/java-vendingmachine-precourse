@@ -1,13 +1,11 @@
 package vendingmachine;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.Map;
 
-import vendingmachine.model.Coin;
 import vendingmachine.model.CoinRepository;
 import vendingmachine.view.InputView;
+import vendingmachine.view.PrintView;
 
 public class VendingMachine {
 
@@ -20,5 +18,10 @@ public class VendingMachine {
     public static VendingMachine from() {
         int coin = InputView.requestCoin();
         return new VendingMachine(CoinRepository.of(new LinkedHashMap<>(), coin));
+    }
+
+    public void showCoinStatus() {
+        Map<Integer, Integer> smallChange = coinRepository.getSavedCoin();
+        PrintView.printSmallChange(smallChange);
     }
 }

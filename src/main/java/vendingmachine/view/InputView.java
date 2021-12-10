@@ -5,7 +5,7 @@ import vendingmachine.utils.InputValidator;
 
 public class InputView {
     public static int requestCoin() {
-        System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
+        PrintView.requestInitialCoin();
         String input;
         do {
             input = Console.readLine();
