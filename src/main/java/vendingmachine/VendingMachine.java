@@ -27,5 +27,6 @@ public class VendingMachine {
 
     public void makeOrderList() {
         String orderList = InputView.requestItemList();
+
     }
 }

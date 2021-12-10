@@ -19,7 +19,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("아이템 입력 실패 테스트")
-    @ValueSource(strings = {"[100,콜라,20];[사이다,adf,10]", "[콜라,10,20];[사이다,20,abc]"})
+    @ValueSource(strings = {"[100,콜라,20];[사이다,adf,10]", "[콜라,10,20];[사이다,20,abc]", "(콜라,100,20);(사이다,200,20)", "[콜라,134,2];[사이다,222,10]"})
     void is_not_valid_item_input(String input) {
         assertThat(InputValidator.isNotValidItemList(input.split(";"))).isTrue();
     }

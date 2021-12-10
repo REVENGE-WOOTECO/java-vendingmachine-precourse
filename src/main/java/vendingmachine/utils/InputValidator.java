@@ -54,8 +54,17 @@ public class InputValidator {
             if (isNotValidItemInfo(unitItemInfo)) {
                 return true;
             }
+            if (isNotValidItemPrice(unitItemInfo)) {
+                return true;
+            }
         }
         return false;
+    }
+
+    private static boolean isNotValidItemPrice(String unitItemInfo) {
+        String substring = unitItemInfo.substring(1, unitItemInfo.length() - 1);
+        String[] splitValue = substring.split(",");
+        return isNotValidMoneyValue(splitValue[1]);
     }
 
     private static boolean isNotValidItemInfo(String unitItemInfo) {
