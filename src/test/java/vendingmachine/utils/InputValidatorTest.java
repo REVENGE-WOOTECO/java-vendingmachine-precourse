@@ -23,4 +23,11 @@ class InputValidatorTest {
     void is_not_valid_item_input(String input) {
         assertThat(InputValidator.isNotValidItemList(input.split(";"))).isTrue();
     }
+
+    @ParameterizedTest
+    @DisplayName("아이템 중복 실패 테스트")
+    @ValueSource(strings = {"[콜라,100,2];[콜라,200,10]", "[사이다,100,20];[콜라,300,20];[사이다,100,10]"})
+    void is_duplicated_item_name_input(String input) {
+        assertThat(InputValidator.isNotValidItemList(input.split(";"))).isTrue();
+    }
 }

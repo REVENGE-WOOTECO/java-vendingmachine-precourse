@@ -1,5 +1,7 @@
 package vendingmachine.utils;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class InputValidator {
@@ -58,13 +60,10 @@ public class InputValidator {
                 return true;
             }
         }
+        if (isDuplicatedItemName(split)) {
+            return true;
+        }
         return false;
-    }
-
-    private static boolean isNotValidItemPrice(String unitItemInfo) {
-        String substring = unitItemInfo.substring(1, unitItemInfo.length() - 1);
-        String[] splitValue = substring.split(",");
-        return isNotValidMoneyValue(splitValue[1]);
     }
 
     private static boolean isNotValidItemInfo(String unitItemInfo) {
@@ -80,6 +79,38 @@ public class InputValidator {
     private static void requestValidationToItemPattern(String unitItemInfo) {
         if (!patternForItemInfo.matcher(unitItemInfo).matches()) {
             throw new IllegalArgumentException("[ERROR] 올바른 패턴을 입력하세요. 예시는 다음과 같습니다 : [사이다,1000,10]");
+        }
+    }
+
+    private static boolean isNotValidItemPrice(String unitItemInfo) {
+        String[] splitValue = parsingToInfo(unitItemInfo);
+        return isNotValidMoneyValue(splitValue[1]);
+    }
+
+    private static boolean isDuplicatedItemName(String[] split) {
+        Set<String> itemNames = new HashSet<>();
+        for (String unitItemInfo : split) {
+            String[] info = parsingToInfo(unitItemInfo);
+            String itemName = info[0];
+            try {
+                requestValidationAboutDuplication(itemNames, itemName);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                return true;
+            }
+            itemNames.add(itemName);
+        }
+        return false;
+    }
+
+    private static String[] parsingToInfo(String unitItemInfo) {
+        String substring = unitItemInfo.substring(1, unitItemInfo.length() - 1);
+        return substring.split(",");
+    }
+
+    private static void requestValidationAboutDuplication(Set<String> itemNames, String itemName) {
+        if (itemNames.contains(itemName)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 Item 이름이 있습니다.");
         }
     }
 }
