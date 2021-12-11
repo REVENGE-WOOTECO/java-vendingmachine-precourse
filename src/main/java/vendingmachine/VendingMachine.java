@@ -56,14 +56,62 @@ public class VendingMachine {
             break;
         }
         // 남은 금액 출력
+        System.out.println("남은 금액 = " + insertMoney);
     }
 
-    // 상품 입력받고 주문하기, 주문할 수 없는 입력은 경고주고 다시 입력 받기
     private int requestItem(int insertMoney) {
         PrintView.requestItemNameForOrder();
         String itemName = InputView.requestItemForOrder();
+        if (isImpossibleItemForOrder(itemName, insertMoney)) {
+            return insertMoney;
+        }
+        return orderThisItem(itemName, insertMoney);
+    }
+
+    private int orderThisItem(String itemName, int insertMoney) {
 
         return insertMoney;
+    }
+
+    private boolean isImpossibleItemForOrder(String itemName, int insertMoney) {
+        if(!isContain(itemName)) {
+            System.out.println("[ERROR] 없는 Item 입니다. 확인 후 입력해주세요.");
+            return true;
+        }
+        if (!isEnoughMoney(itemName, insertMoney)) {
+            System.out.println("[ERROR] 금액이 부족합니다. ");
+            return true;
+        }
+        if (!isEnoughQuantity(itemName)) {
+            System.out.println("[ERROR] 재고가 부족합니다. ");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isEnoughMoney(String itemName, int insertMoney) {
+        for (Item item : items) {
+            if (!item.getItemName().equals(itemName)) {
+                continue;
+            }
+            return item.checkPrice(insertMoney);
+        }
+        return false;
+    }
+
+    private boolean isEnoughQuantity(String itemName) {
+        for (Item item : items) {
+            if (!item.getItemName().equals(itemName)) {
+                continue;
+            }
+            return item.checkQuantity();
+        }
+        return false;
+    }
+
+    private boolean isContain(String itemName) {
+        return items.stream()
+            .anyMatch(item -> item.getItemName().equals(itemName));
     }
 
     private boolean isPossibleMoneyForOrder(int insertMoney) {

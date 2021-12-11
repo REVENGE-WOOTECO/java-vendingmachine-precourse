@@ -15,6 +15,14 @@ public class Item {
         return itemName;
     }
 
+    public boolean checkQuantity() {
+        return quantity != 0;
+    }
+
+    public boolean checkPrice(int price) {
+        return this.price <= price;
+    }
+
     public boolean checkOrderPossible(int money) {
         return quantity != 0 && money >= price;
     }
