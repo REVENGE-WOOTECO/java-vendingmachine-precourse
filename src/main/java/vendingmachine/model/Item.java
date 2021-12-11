@@ -14,4 +14,8 @@ public class Item {
     public String getItemName() {
         return itemName;
     }
+
+    public boolean checkOrderPossible(int money) {
+        return quantity != 0 && money >= price;
+    }
 }

@@ -7,5 +7,6 @@ public class Application {
         VendingMachine vendingMachine = VendingMachine.from(new ArrayList<>());
         vendingMachine.showCoinStatus();
         vendingMachine.makeOrderList();
+        vendingMachine.requestOrder();
     }
 }

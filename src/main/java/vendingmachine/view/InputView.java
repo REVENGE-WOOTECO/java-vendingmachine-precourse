@@ -5,7 +5,6 @@ import vendingmachine.utils.InputValidator;
 
 public class InputView {
     public static int requestCoin() {
-        PrintView.requestInitialCoin();
         String input;
         do {
             input = Console.readLine();
@@ -14,11 +13,18 @@ public class InputView {
     }
 
     public static String requestItemList() {
-        PrintView.requestItemInformation();
         String input;
         do {
             input = Console.readLine();
         } while (InputValidator.isNotValidItemList(input.split(";")));
+        return input;
+    }
+
+    public static String requestItemForOrder() {
+        String input;
+        do {
+            input = Console.readLine();
+        } while (InputValidator.isNotValidNameFormat(input));
         return input;
     }
 }

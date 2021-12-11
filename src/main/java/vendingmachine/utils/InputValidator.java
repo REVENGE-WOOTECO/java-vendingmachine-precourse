@@ -8,6 +8,7 @@ public class InputValidator {
 
     private static final Pattern patternForNumber = Pattern.compile("^[\\d]+");
     private static final Pattern patternForItemInfo = Pattern.compile("^\\[[ㄱ-ㅎ가-힣a-zA-Z]+,[\\d]+,[\\d]+]$");
+    private static final Pattern patternForStringName = Pattern.compile("^[ㄱ-ㅎ가-힣a-zA-Z]+");
 
     public static boolean isNotValidInputMoney(String input) {
         if (isNotValidNumber(input)) {
@@ -111,6 +112,22 @@ public class InputValidator {
     private static void requestValidationAboutDuplication(Set<String> itemNames, String itemName) {
         if (itemNames.contains(itemName)) {
             throw new IllegalArgumentException("[ERROR] 중복된 Item 이름이 있습니다.");
+        }
+    }
+
+    public static boolean isNotValidNameFormat(String input) {
+        try {
+            requestValidationToStringNamePattern(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    private static void requestValidationToStringNamePattern(String input) {
+        if (!patternForStringName.matcher(input).matches()) {
+            throw new IllegalArgumentException("[ERROR] 상품명은 영문 또는 한글로만 입력하세요.");
         }
     }
 }

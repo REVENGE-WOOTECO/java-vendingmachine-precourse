@@ -30,4 +30,11 @@ class InputValidatorTest {
     void is_duplicated_item_name_input(String input) {
         assertThat(InputValidator.isNotValidItemList(input.split(";"))).isTrue();
     }
+
+    @ParameterizedTest
+    @DisplayName("아이템 이름 실패 테스트")
+    @ValueSource(strings = {"12", "adb23", "가나23"})
+    void is_invalid_name(String input) {
+        assertThat(InputValidator.isNotValidNameFormat(input)).isTrue();
+    }
 }
