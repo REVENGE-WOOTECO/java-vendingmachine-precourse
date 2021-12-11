@@ -13,6 +13,7 @@ public class VendingMachine {
 
     private CoinRepository coinRepository;
     private List<Item> items;
+    private int smallChange;
 
     public VendingMachine(CoinRepository coinRepository, List<Item> items) {
         this.coinRepository = coinRepository;
@@ -42,50 +43,53 @@ public class VendingMachine {
 
     public void requestOrder() {
         PrintView.requestInsertMoney();
-        int insertMoney = InputView.requestCoin();
-        continueOrder(insertMoney);
+        smallChange = InputView.requestCoin();
+        continuousOrder();
     }
 
-    private void continueOrder(int insertMoney) {
+    private void continuousOrder() {
         while (true) {
-            PrintView.showInsertMoney(insertMoney);
-            if (isPossibleMoneyForOrder(insertMoney)) {
-                insertMoney = requestItem(insertMoney);
-                System.out.println("남은 금액 = " + insertMoney);
+            PrintView.showInsertMoney(smallChange);
+            if (isPossibleMoneyForOrder()) {
+                smallChange = requestItem();
                 continue;
             }
             break;
         }
-        // 남은 금액 출력
-        System.out.println("최종 남은 금액 = " + insertMoney);
+        showSmallChange();
     }
 
-    private int requestItem(int insertMoney) {
+    private void showSmallChange() {
+        // TODO 구현 : 잔돈 주고, 나머지는 자판기가 먹도록 구현
+        System.out.println("smallChange = " + smallChange);
+    }
+
+    private int requestItem() {
         PrintView.requestItemNameForOrder();
         String itemName = InputView.requestItemForOrder();
-        if (isImpossibleItemForOrder(itemName, insertMoney)) {
-            return insertMoney;
+        if (isImpossibleItemForOrder(itemName)) {
+            return smallChange;
         }
-        return orderThisItem(itemName, insertMoney);
+        return orderThisItem(itemName);
     }
 
-    private int orderThisItem(String itemName, int insertMoney) {
+    private int orderThisItem(String itemName) {
         for (Item item : items) {
             if(item.getItemName().equals(itemName)) {
                 item.orderItem();
-                insertMoney -= item.getPrice();
+                smallChange -= item.getPrice();
                 break;
             }
         }
-        return insertMoney;
+        return smallChange;
     }
 
-    private boolean isImpossibleItemForOrder(String itemName, int insertMoney) {
+    private boolean isImpossibleItemForOrder(String itemName) {
         if(!isContain(itemName)) {
             System.out.println("[ERROR] 없는 Item 입니다. 확인 후 입력해주세요.");
             return true;
         }
-        if (!isEnoughMoney(itemName, insertMoney)) {
+        if (!isEnoughMoney(itemName)) {
             System.out.println("[ERROR] 금액이 부족합니다. ");
             return true;
         }
@@ -96,12 +100,12 @@ public class VendingMachine {
         return false;
     }
 
-    private boolean isEnoughMoney(String itemName, int insertMoney) {
+    private boolean isEnoughMoney(String itemName) {
         for (Item item : items) {
             if (!item.getItemName().equals(itemName)) {
                 continue;
             }
-            return item.checkPrice(insertMoney);
+            return item.checkPrice(smallChange);
         }
         return false;
     }
@@ -121,8 +125,8 @@ public class VendingMachine {
             .anyMatch(item -> item.getItemName().equals(itemName));
     }
 
-    private boolean isPossibleMoneyForOrder(int insertMoney) {
+    private boolean isPossibleMoneyForOrder() {
         return items.stream()
-            .anyMatch(item -> item.checkOrderPossible(insertMoney));
+            .anyMatch(item -> item.checkOrderPossible(smallChange));
     }
 }
