@@ -26,4 +26,12 @@ public class Item {
     public boolean checkOrderPossible(int money) {
         return quantity != 0 && money >= price;
     }
+
+    public void orderItem() {
+        quantity--;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }

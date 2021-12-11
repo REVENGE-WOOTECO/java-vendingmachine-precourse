@@ -51,12 +51,13 @@ public class VendingMachine {
             PrintView.showInsertMoney(insertMoney);
             if (isPossibleMoneyForOrder(insertMoney)) {
                 insertMoney = requestItem(insertMoney);
+                System.out.println("남은 금액 = " + insertMoney);
                 continue;
             }
             break;
         }
         // 남은 금액 출력
-        System.out.println("남은 금액 = " + insertMoney);
+        System.out.println("최종 남은 금액 = " + insertMoney);
     }
 
     private int requestItem(int insertMoney) {
@@ -69,7 +70,13 @@ public class VendingMachine {
     }
 
     private int orderThisItem(String itemName, int insertMoney) {
-
+        for (Item item : items) {
+            if(item.getItemName().equals(itemName)) {
+                item.orderItem();
+                insertMoney -= item.getPrice();
+                break;
+            }
+        }
         return insertMoney;
     }
 
