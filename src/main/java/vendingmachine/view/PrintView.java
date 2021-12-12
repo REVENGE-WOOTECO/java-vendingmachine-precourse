@@ -23,10 +23,17 @@ public class PrintView {
     }
 
     public static void showInsertMoney(int insertMoney) {
-        System.out.println("\n투입 금액 : " + insertMoney + "원");
+        System.out.println("\n투입 금액: " + insertMoney + "원");
     }
 
     public static void requestItemNameForOrder() {
         System.out.println("구매할 상품명을 입력해 주세요.");
+    }
+
+    public static void printLeftSmallChange(Map<Integer, Integer> smallChange) {
+        System.out.println("잔돈");
+        for (Integer coinValue : smallChange.keySet()) {
+            System.out.println(coinValue + "원 - " + smallChange.get(coinValue) + "개");
+        }
     }
 }

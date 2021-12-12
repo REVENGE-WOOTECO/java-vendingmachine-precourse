@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import vendingmachine.view.PrintView;
 
 public class CoinRepository {
 
@@ -14,7 +15,7 @@ public class CoinRepository {
         this.savedCoin = savedCoin;
     }
 
-    public static CoinRepository of(Map<Integer, Integer> coinMap , int coin) {
+    public static CoinRepository of(Map<Integer, Integer> coinMap, int coin) {
         initialSavedCoin(coinMap);
         makeRandomSavedCoin(coinMap, coin);
         return new CoinRepository(coinMap);
@@ -40,7 +41,7 @@ public class CoinRepository {
         return savedCoin;
     }
 
-    public Map<Integer, Integer> showHaveCoin() {
+    private Map<Integer, Integer> showHaveCoin() {
         Map<Integer, Integer> smallChange = new LinkedHashMap<>();
         for (Integer coinValue : savedCoin.keySet()) {
             if (savedCoin.get(coinValue) != 0) {
@@ -48,5 +49,34 @@ public class CoinRepository {
             }
         }
         return smallChange;
+    }
+
+    public Map<Integer, Integer> showSmallChange(int smallChange) {
+        Map<Integer, Integer> changeMap = new LinkedHashMap<>();
+        for (int coinValue : savedCoin.keySet()) {
+            if (smallChange == 0) {
+                break;
+            }
+            int coinCount = savedCoin.get(coinValue);
+            if (coinCount == 0 || smallChange % coinValue != 0) {
+                continue;
+            }
+            smallChange = calculateCoinChange(changeMap, smallChange, coinValue, coinCount);
+        }
+        makeRandomSavedCoin(savedCoin, smallChange);
+        return changeMap;
+    }
+
+    private int calculateCoinChange(Map<Integer, Integer> changeMap, int smallChange, int coinValue, int coinCount) {
+        int needCount = smallChange / coinValue;
+        if (needCount >= coinCount) {
+            savedCoin.put(coinValue, 0);
+            changeMap.put(coinValue, coinCount);
+            smallChange -= (coinValue * coinCount);
+            return smallChange;
+        }
+        savedCoin.put(coinValue, savedCoin.get(coinValue) - needCount);
+        changeMap.put(coinValue, needCount);
+        return 0;
     }
 }

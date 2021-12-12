@@ -51,37 +51,32 @@ public class VendingMachine {
         while (true) {
             PrintView.showInsertMoney(smallChange);
             if (isPossibleMoneyForOrder()) {
-                smallChange = requestItem();
+                requestItem();
                 continue;
             }
             break;
         }
-        showSmallChange();
+        Map<Integer, Integer> smallChangeMap = coinRepository.showSmallChange(smallChange);
+        PrintView.printLeftSmallChange(smallChangeMap);
     }
 
-    private void showSmallChange() {
-        // TODO 구현 : 잔돈 주고, 나머지는 자판기가 먹도록 구현
-        System.out.println("smallChange = " + smallChange);
-    }
-
-    private int requestItem() {
+    private void requestItem() {
         PrintView.requestItemNameForOrder();
         String itemName = InputView.requestItemForOrder();
         if (isImpossibleItemForOrder(itemName)) {
-            return smallChange;
+            return;
         }
-        return orderThisItem(itemName);
+        orderThisItem(itemName);
     }
 
-    private int orderThisItem(String itemName) {
+    private void orderThisItem(String itemName) {
         for (Item item : items) {
             if(item.getItemName().equals(itemName)) {
                 item.orderItem();
                 smallChange -= item.getPrice();
-                break;
+                return;
             }
         }
-        return smallChange;
     }
 
     private boolean isImpossibleItemForOrder(String itemName) {

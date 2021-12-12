@@ -16,7 +16,6 @@ public enum Coin {
         this.amount = amount;
     }
 
-    // 추가 기능 구현
     public static List<Integer> showCoinList() {
         return Arrays.stream(Coin.values())
             .map(coin -> coin.amount)
