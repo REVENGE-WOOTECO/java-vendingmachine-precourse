@@ -4,7 +4,7 @@ import vendingmachine.validator.ValidateMoney;
 
 public class Money {
 
-    private final int money;
+    private int money;
 
     public Money(int money) {
         ValidateMoney.validateNegative(money);
