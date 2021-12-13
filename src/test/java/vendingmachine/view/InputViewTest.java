@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,14 @@ class InputViewTest {
     private final InputView inputView = new InputView();
 
     @BeforeEach
-    public void beforeAll() {
+    public void setUpStreams() {
         System.setOut(new PrintStream(output));
+    }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(System.out);
+        output.reset();
     }
 
     private void command(final String... args) {
@@ -83,6 +90,22 @@ class InputViewTest {
 
         // then
         assertThat(output.toString()).contains("[ERROR] 보유할 금액으로 공백을 입력할 수 없습니다. 다시 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("공백으로 금액 입력 시 Exception 발생")
+    void isNotRightInputMoneyByNegative() {
+        // given
+        command("-1");
+
+        // when
+        try {
+            inputView.inputMoney();
+        } catch (final NoSuchElementException ignore) {
+        }
+
+        // then
+        assertThat(output.toString()).contains("[ERROR] 보유할 금액으로 음수를 입력할 수 없습니다. 다시 입력해주세요.");
     }
 
 }
