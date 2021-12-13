@@ -42,3 +42,59 @@
 ### 추가 처리
 - [X] 매직 넘버, SystemMessage 처리한다.
 - [X] public method는 Unit Test로 검증하도록 시도해본다.
+
+<br>
+
+### 설계 상세 사항 
+
+#### 1. Application(Client)
+- VendingMachine에 대해 다음 순서로 메서드를 호출한다.
+1. ``VendingMachine.from(new ArrayList<>())`` : 초기화 진행
+2. ``vendingMachine.showCoinStatus()`` : 처음 상태 출력
+3. ``vendingMachine.makeOrderList();`` : 주문 목록 만들기
+4. ``vendingMachine.requestOrder();`` : 주문 요청
+
+<br>
+
+#### 2. VendingMachine
+- 동전을 관리해주는 ``CoinRepository``, 가지고 있는 아이템 목록인 ``items``, 잔돈 ``smallChange``를 변수로 가진다.
+- 사용자로부터 입력받은 동전 액수, 아이템 리스트를 기반으로 주문을 수행하는 역할을 수행한다.
+
+<br>
+
+#### 3. Coin
+- 얼마짜리인지 나타내는 ``amount``를 가지고 있으며, 외부에서 초기화를 위한 amount를 반환해주는 역할을 한다.
+
+<br>
+
+#### 4. CoinRepository
+- ``savedCoin``이라는 Map을 가지고 있으며, key로는 Coin의 ``amount``, value로는 개수를 가진다.
+- 사용자로부터 입력된 입력 동전으로부터 랜덤으로 동전을 생성해낸다.
+- 거슬러 주는 시점에 Coin amount - Count 쌍으로 된 Map을 만들며, Greedy한 방식으로 큰 amount의 동전부터 차례로 거스름돈으로 만든다.
+
+<br>
+
+#### 5. Item
+- VendingMachine에 등록하기 위한 itemName, price, quantity를 가지는 객체이다.
+- 해당 Item이 주문 가능한지 판단해주는 일부 메서드를 가진다. 
+
+<br>
+
+#### 6. InputView
+- 사용자 입력을 전적으로 담당한다.
+- 검증은 ``InputValidator``로 위임한다.
+
+<br>
+
+#### 7. PrintView
+- 출력을 전적으로 담당한다.
+
+<br>
+
+#### 8. InputValidator
+- 사용자 입력을 검증하는 역할을 담당한다.
+
+<br>
+
+#### 9. Constant
+- 공통으로 사용되는 문자, 숫자에 의미를 부여하여 관리한다.
