@@ -1,7 +1,6 @@
 package vendingmachine.validator;
 
 public class ValidateMoney {
-
     public static final int NEGATIVE_ZERO = 0;
     public static final int REMAINDER_ZERO = 0;
     public static final int MIN_MONEY_UNIT = 10;
@@ -15,8 +14,8 @@ public class ValidateMoney {
         try {
             validateDigit(money);
             validateEmpty(money);
-            validateNegative(money);
-            validateMoneyUnit(money);
+            validateNegative(Integer.parseInt(money));
+            validateMoneyUnit(Integer.parseInt(money));
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -39,14 +38,14 @@ public class ValidateMoney {
         }
     }
 
-    private static void validateNegative(String money) {
-        if (Integer.parseInt(money) < NEGATIVE_ZERO) {
+    public static void validateNegative(int money) {
+        if (money < NEGATIVE_ZERO) {
             throw new IllegalArgumentException(ERROR_MONEY_NEGATIVE);
         }
     }
 
-    private static void validateMoneyUnit(String money) {
-        if (Integer.parseInt(money) % MIN_MONEY_UNIT != REMAINDER_ZERO) {
+    public static void validateMoneyUnit(int money) {
+        if (money % MIN_MONEY_UNIT != REMAINDER_ZERO) {
             throw new IllegalArgumentException(ERROR_MONEY_UNIT);
         }
     }
