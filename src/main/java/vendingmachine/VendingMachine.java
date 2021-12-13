@@ -61,10 +61,9 @@ public class VendingMachine {
         showResult();
     }
 
-    private void showResult() {
-        Map<Integer, Integer> smallChangeMap = coinRepository.showSmallChange(smallChange);
-        PrintView.printResultMoreThanZero();
-        PrintView.printSmallChange(smallChangeMap);
+    private boolean isPossibleMoneyForOrder() {
+        return items.stream()
+            .anyMatch(item -> item.checkOrderPossible(smallChange));
     }
 
     private void requestItem() {
@@ -76,14 +75,10 @@ public class VendingMachine {
         orderThisItem(itemName);
     }
 
-    private void orderThisItem(String itemName) {
-        for (Item item : items) {
-            if(item.getItemName().equals(itemName)) {
-                item.orderItem();
-                smallChange -= item.getPrice();
-                return;
-            }
-        }
+    private void showResult() {
+        Map<Integer, Integer> smallChangeMap = coinRepository.showSmallChange(smallChange);
+        PrintView.printResultMoreThanZero();
+        PrintView.printSmallChange(smallChangeMap);
     }
 
     private boolean isImpossibleItemForOrder(String itemName) {
@@ -100,6 +95,21 @@ public class VendingMachine {
             return true;
         }
         return false;
+    }
+
+    private void orderThisItem(String itemName) {
+        for (Item item : items) {
+            if(item.getItemName().equals(itemName)) {
+                item.orderItem();
+                smallChange -= item.getPrice();
+                return;
+            }
+        }
+    }
+
+    private boolean isContain(String itemName) {
+        return items.stream()
+            .anyMatch(item -> item.getItemName().equals(itemName));
     }
 
     private boolean isEnoughMoney(String itemName) {
@@ -120,15 +130,5 @@ public class VendingMachine {
             return item.checkQuantity();
         }
         return false;
-    }
-
-    private boolean isContain(String itemName) {
-        return items.stream()
-            .anyMatch(item -> item.getItemName().equals(itemName));
-    }
-
-    private boolean isPossibleMoneyForOrder() {
-        return items.stream()
-            .anyMatch(item -> item.checkOrderPossible(smallChange));
     }
 }

@@ -2,9 +2,10 @@
 
 ## 🔍 구성
 
-- Model : Coin
+- Client : Application
+- Model : Coin, CoinRepository, item
 - View : InputView(입력 담당), PrintView(출력 담당)
-- Controller : VendingMachine
+- Controller(역할) : VendingMachine
 - Utils
     - InputValidator : Input 검증
     - Constant : 상수 Group
