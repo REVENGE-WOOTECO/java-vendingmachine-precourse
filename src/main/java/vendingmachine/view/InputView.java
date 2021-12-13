@@ -1,5 +1,7 @@
 package vendingmachine.view;
 
+import static vendingmachine.utils.Constant.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.utils.InputValidator;
 
@@ -16,7 +18,7 @@ public class InputView {
         String input;
         do {
             input = Console.readLine();
-        } while (InputValidator.isNotValidItemList(input.split(";")));
+        } while (InputValidator.isNotValidItemList(input.split(ITEM_SPLIT_VALUE)));
         return input;
     }
 

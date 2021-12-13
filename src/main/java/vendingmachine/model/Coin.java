@@ -21,5 +21,4 @@ public enum Coin {
             .map(coin -> coin.amount)
             .collect(Collectors.toList());
     }
-
 }

@@ -8,10 +8,13 @@ public class PrintView {
     }
 
     public static void printSmallChange(Map<Integer, Integer> smallChange) {
-        System.out.println("\n자판기가 보유한 동전");
         for (Integer coinValue : smallChange.keySet()) {
             System.out.println(coinValue + "원 - " + smallChange.get(coinValue) + "개");
         }
+    }
+
+    public static void printCoinWithZeroAmount() {
+        System.out.println("\n자판기가 보유한 동전");
     }
 
     public static void requestItemInformation() {
@@ -30,10 +33,7 @@ public class PrintView {
         System.out.println("구매할 상품명을 입력해 주세요.");
     }
 
-    public static void printLeftSmallChange(Map<Integer, Integer> smallChange) {
+    public static void printResultMoreThanZero() {
         System.out.println("잔돈");
-        for (Integer coinValue : smallChange.keySet()) {
-            System.out.println(coinValue + "원 - " + smallChange.get(coinValue) + "개");
-        }
     }
 }

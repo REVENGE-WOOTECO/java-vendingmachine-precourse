@@ -1,8 +1,10 @@
 package vendingmachine.model;
 
+import static vendingmachine.utils.Constant.*;
+
 public class Item {
-    private String itemName;
-    private int price;
+    private final String itemName;
+    private final int price;
     private int quantity;
 
     public Item(String itemName, int price, int quantity) {
@@ -16,7 +18,7 @@ public class Item {
     }
 
     public boolean checkQuantity() {
-        return quantity != 0;
+        return quantity != ZERO_COUNT;
     }
 
     public boolean checkPrice(int price) {
@@ -24,7 +26,7 @@ public class Item {
     }
 
     public boolean checkOrderPossible(int money) {
-        return quantity != 0 && money >= price;
+        return quantity != ZERO_COUNT && money >= price;
     }
 
     public void orderItem() {

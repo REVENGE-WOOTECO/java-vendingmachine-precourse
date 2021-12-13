@@ -39,5 +39,5 @@
 <br>
 
 ### 추가 처리
-- [ ] 매직 넘버, SystemMessage 처리한다.
-- [ ] public method는 Unit Test로 검증하도록 시도해본다.
+- [X] 매직 넘버, SystemMessage 처리한다.
+- [X] public method는 Unit Test로 검증하도록 시도해본다.

@@ -1,5 +1,7 @@
 package vendingmachine;
 
+import static vendingmachine.utils.Constant.*;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +12,8 @@ import vendingmachine.view.InputView;
 import vendingmachine.view.PrintView;
 
 public class VendingMachine {
-
-    private CoinRepository coinRepository;
-    private List<Item> items;
+    private final CoinRepository coinRepository;
+    private final List<Item> items;
     private int smallChange;
 
     public VendingMachine(CoinRepository coinRepository, List<Item> items) {
@@ -28,16 +29,17 @@ public class VendingMachine {
 
     public void showCoinStatus() {
         Map<Integer, Integer> smallChange = coinRepository.getSavedCoin();
+        PrintView.printCoinWithZeroAmount();
         PrintView.printSmallChange(smallChange);
     }
 
     public void makeOrderList() {
         PrintView.requestItemInformation();
         String itemList = InputView.requestItemList();
-        String[] splitItem = itemList.split(";");
+        String[] splitItem = itemList.split(ITEM_SPLIT_VALUE);
         for (String s : splitItem) {
-            String[] splitItemInfo = s.substring(1, s.length() - 1).split(",");
-            items.add(new Item(splitItemInfo[0], Integer.parseInt(splitItemInfo[1]), Integer.parseInt(splitItemInfo[2])));
+            String[] splitItemInfo = s.substring(1, s.length() - 1).split(INFO_SPLIT_VALUE);
+            items.add(new Item(splitItemInfo[NAME_INDEX], Integer.parseInt(splitItemInfo[PRICE_INDEX]), Integer.parseInt(splitItemInfo[QUANTITY_INDEX])));
         }
     }
 
@@ -56,8 +58,13 @@ public class VendingMachine {
             }
             break;
         }
+        showResult();
+    }
+
+    private void showResult() {
         Map<Integer, Integer> smallChangeMap = coinRepository.showSmallChange(smallChange);
-        PrintView.printLeftSmallChange(smallChangeMap);
+        PrintView.printResultMoreThanZero();
+        PrintView.printSmallChange(smallChangeMap);
     }
 
     private void requestItem() {
