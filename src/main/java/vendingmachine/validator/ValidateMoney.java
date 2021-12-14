@@ -22,7 +22,7 @@ public class ValidateMoney {
         return true;
     }
 
-    public static int validateDigit(String money) {
+    private static int validateDigit(String money) {
         try {
             return Integer.parseInt(money);
         } catch (Exception e) {
@@ -30,13 +30,13 @@ public class ValidateMoney {
         }
     }
 
-    public static void validateNegative(int money) {
+    private static void validateNegative(int money) {
         if (money < NEGATIVE_ZERO) {
             throw new IllegalArgumentException(ERROR_MONEY_NEGATIVE);
         }
     }
 
-    public static void validateMoneyUnit(int money) {
+    private static void validateMoneyUnit(int money) {
         if (money % Coin.COIN_10.getAmount() != REMAINDER_ZERO) {
             throw new IllegalArgumentException(ERROR_MONEY_UNIT);
         }
