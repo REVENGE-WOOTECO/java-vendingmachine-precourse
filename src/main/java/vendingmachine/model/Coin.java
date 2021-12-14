@@ -1,4 +1,6 @@
-package vendingmachine;
+package vendingmachine.model;
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 public enum Coin {
     COIN_500(500),
@@ -12,5 +14,7 @@ public enum Coin {
         this.amount = amount;
     }
 
-    // 추가 기능 구현
+    public int getAmount() {
+        return this.amount;
+    }
 }
