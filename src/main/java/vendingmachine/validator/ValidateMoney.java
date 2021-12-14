@@ -10,7 +10,7 @@ public class ValidateMoney {
     public static final String ERROR_MONEY_NEGATIVE = "[ERROR] 금액으로 음수를 입력할 수 없습니다. 다시 입력해주세요.";
     public static final String ERROR_MONEY_UNIT = "[ERROR] 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
 
-    public static boolean isNotValidInputMachineMoney(String machineMoney) {
+    public static boolean isNotValidMoney(String machineMoney) {
         try {
             int machineMoneyValue = validateDigit(machineMoney);
             validateNegative(machineMoneyValue);

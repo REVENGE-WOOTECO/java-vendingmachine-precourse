@@ -14,7 +14,7 @@ public class InputView {
     public int inputVendingMachineMoney() {
         System.out.println(INPUT_VENDING_MACHINE_MONEY);
         String machineMoney = Console.readLine();
-        while (ValidateMoney.isNotValidInputMachineMoney(machineMoney)) {
+        while (ValidateMoney.isNotValidMoney(machineMoney)) {
             machineMoney = Console.readLine();
         }
         return Integer.parseInt(machineMoney);
@@ -28,4 +28,14 @@ public class InputView {
         }
         return beverages;
     }
+
+    public int inputInsertMoney() {
+        System.out.println(INPUT_INSERT_MONEY);
+        String insertMoney = Console.readLine();
+        while (ValidateMoney.isNotValidMoney(insertMoney)) {
+            insertMoney = Console.readLine();
+        }
+        return Integer.parseInt(insertMoney);
+    }
+
 }
