@@ -11,4 +11,12 @@ public class Money {
         ValidateMoney.validateMoneyUnit(money);
         this.money = money;
     }
+
+    public Money deduct(Money price) {
+        return new Money(this.money - price.money);
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }
