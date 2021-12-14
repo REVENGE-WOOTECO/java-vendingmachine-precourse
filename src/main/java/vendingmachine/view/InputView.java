@@ -38,4 +38,9 @@ public class InputView {
         return Integer.parseInt(insertMoney);
     }
 
+    public String inputBuyBeverage() {
+        System.out.println(INPUT_BUY_BEVERAGE);
+        return Console.readLine();
+    }
+
 }
