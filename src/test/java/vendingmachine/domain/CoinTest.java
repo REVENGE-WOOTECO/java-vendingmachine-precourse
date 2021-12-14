@@ -15,4 +15,17 @@ class CoinTest {
         // then
         assertThat(Coin.getCoinAmountList().size()).isEqualTo(4);
     }
+
+    @Test
+    @DisplayName("코인의 amount 값으로 코인을 반환하는 지")
+    void Should_ReturnCoin_When_FindByAmount() {
+        // given
+        int amount = 100;
+
+        // when
+        Coin coin = Coin.findByAmount(amount);
+
+        // then
+        assertThat(coin).isEqualTo(Coin.COIN_100);
+    }
 }
