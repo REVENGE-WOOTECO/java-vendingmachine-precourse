@@ -16,6 +16,13 @@ public enum Coin {
         this.amount = amount;
     }
 
+    public static Coin findByAmount(int amount) {
+        return Arrays.stream(Coin.values())
+            .filter(coin -> coin.getAmount() == amount)
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 동전을 찾을 수 없습니다."));
+    }
+
     public static List<Integer> getCoinAmountList() {
         return Arrays.stream(Coin.values())
             .map(Coin::getAmount)
