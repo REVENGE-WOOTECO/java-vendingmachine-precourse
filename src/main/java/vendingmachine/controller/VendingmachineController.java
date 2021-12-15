@@ -35,4 +35,9 @@ public class VendingmachineController {
 	public void inputProducts(String products){
 		validator.productsValidator(products);
 	}
+
+	public void inputUserMoney(String money){
+		validator.userMoneyValidator(money);
+	}
+
 }

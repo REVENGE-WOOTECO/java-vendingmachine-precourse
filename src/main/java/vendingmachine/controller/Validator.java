@@ -36,4 +36,12 @@ public class Validator {
 			.filter(product -> product.charAt(0) != '[' || product.charAt(product.length() - 1) != ']').count();
 		return exceptionCount != 0;
 	}
+
+	public void userMoneyValidator(String checkMoney) {
+		try {
+			Integer.parseInt(checkMoney);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException();
+		}
+	}
 }

@@ -13,11 +13,14 @@ public class VendingmachineView {
 	private final static String MESSAGE_COIN_AMOUNT = "자판기가 보유한 동전";
 	private final static String REQUEST_PRODUCT_NAME_PRICE_QUANTITY = "상품명과 가격, 수량을 입력해 주세요.";
 	private final static String ERROR_MESSAGE_WRONG_PRODUCT_FORM = "[ERROR] 상품 등록 양식이 올바르지 않습니다.";
+	private final static String REQUEST_USER_INPUT_MONEY = "투입 금액을 입력해 주세요.";
+	private final static String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요";
 
 	private VendingmachineController vendingmachineController = new VendingmachineController();
 
 	private boolean holdingAmountFlag = false;
 	private boolean productFlag = false;
+	private boolean userMoneyFlag = false;
 	private int holdingAmount = 0;
 
 	public void startMachine() {
@@ -29,6 +32,10 @@ public class VendingmachineView {
 
 		while (!productFlag) {
 			inputProducts();
+		}
+
+		while(!userMoneyFlag){
+			inputUserMoney();
 		}
 	}
 
@@ -61,5 +68,16 @@ public class VendingmachineView {
 			productFlag = false;
 		}
 
+	}
+
+	private void inputUserMoney(){
+		System.out.println(REQUEST_USER_INPUT_MONEY);
+		try {
+			vendingmachineController.inputUserMoney(Console.readLine());
+			userMoneyFlag = true;
+		} catch (IllegalArgumentException e) {
+			System.out.println(ERROR_MESSAGE_NOT_NUMBER);
+			userMoneyFlag = false;
+		}
 	}
 }
