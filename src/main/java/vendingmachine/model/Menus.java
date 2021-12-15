@@ -3,15 +3,21 @@ package vendingmachine.model;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Menus {
-    private Set<Menu> menus = new HashSet<>();
+    private final Set<Menu> menus;
 
-    public void addMenu(Menu menu) {
-        if (menus.stream().anyMatch(menuEntry -> menuEntry.getName().equals(menu.getName()))) {
+    Menus(Set<Menu> menus) {
+        isValidMenus(menus);
+        this.menus = new HashSet<>(menus);
+    }
+
+    private void isValidMenus(Set<Menu> menus) {
+        Set<String> menuNameSet = menus.stream().map(Menu::getName).collect(Collectors.toSet());
+        if (menus.size() != menuNameSet.size()) {
             throw new IllegalArgumentException("[ERROR] 동일한 이름의 메뉴가 포함되어 있습니다");
         }
-        menus.add(menu);
     }
 
     public void buyMenu(String menuName) {

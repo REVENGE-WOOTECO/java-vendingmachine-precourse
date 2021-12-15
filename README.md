@@ -39,7 +39,8 @@
 
 - VendingMachineMenu
 - 자판기의 상품명, 가격, 수량 입력에 대한 VO
-- [ ] 메뉴 문자열이 입력 패턴을 따르는지 검증
+- [x] 메뉴 문자열이 입력 패턴을 따르는지 검증
+- [x] Menus를 생성 후 넘겨주기
 
 - Menu
 - VendingMachineMenu를 파싱해서, 각 메뉴의 정보에 대한 VO
