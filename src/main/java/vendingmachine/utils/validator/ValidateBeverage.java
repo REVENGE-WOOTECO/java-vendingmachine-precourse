@@ -7,7 +7,8 @@ public class ValidateBeverage {
     public static final String REGEX = "\\[[a-zA-Z0-9가-힣]+,\\d{3,},\\d+]";
     public static final String COMMA_DETERMINE = ",";
     public static final int SUBSTRING_IDX = 1;
-    public static final int ZERO = 0;
+    public static final int MIN_AMOUNT = 1;
+    public static final int REMAINDER_ZERO = 0;
     public static final int MIN_PRICE = 100;
     public static final int PRICE_IDX = 1;
     public static final int AMOUNT_IDX = 2;
@@ -45,7 +46,7 @@ public class ValidateBeverage {
     }
 
     public static void validatePriceUnit(int price) {
-        if (price % Coin.COIN_10.getAmount() != ZERO) {
+        if (price % Coin.COIN_10.getAmount() != REMAINDER_ZERO) {
             throw new IllegalArgumentException(ERROR_PRICE_UNIT);
         }
     }
@@ -57,7 +58,7 @@ public class ValidateBeverage {
     }
 
     public static void validateAmount(int amount) {
-        if (amount <= ZERO) {
+        if (amount < MIN_AMOUNT) {
             throw new IllegalArgumentException(ERROR_AMOUNT_RANGE);
         }
     }

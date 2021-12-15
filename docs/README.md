@@ -60,6 +60,29 @@
         - [x] 잔돈을 반환할 수 없는 경우 잔돈으로 반환할 수 있는 금액만 반환한다.
             -[x] 반환되지 않은 금액은 자판기에 남는다.
 
+## 구조
+
+- controller
+    - VenDingMachineController - 전체적인 로직 담당
+- domain
+    - Beverage - 상품
+    - Beverages - 상품들
+    - Coin - 동전
+    - Coins - 동전들
+    - Money - 투입한 금액
+    - VendingMachine
+- dto
+    - BeverageDto - Beverage 입력 DTO
+- utils
+    - Validator
+        - ValidateBeverage - 상품 입력값 검증
+        - ValidateMoney - 금액 입력값 검증
+    - VendingMachineGenerator - VendingMachine 객체 생성기
+- View
+    - InputView
+    - OutputView
+- Application
+
 <br>
 
 ### ✍🏻 입출력 요구사항
