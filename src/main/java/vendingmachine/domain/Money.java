@@ -7,4 +7,12 @@ public class Money {
     public Money(int money) {
         this.money = money;
     }
+
+    public Money deduct(int price) {
+        return new Money(this.money - price);
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }
