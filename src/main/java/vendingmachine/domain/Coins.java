@@ -17,7 +17,7 @@ public class Coins {
 
     private Map<Coin, Integer> createCoins(int machineMoney) {
         Map<Coin, Integer> coins = initCoins();
-        int tempMoney = 0;
+        int tempMoney = DEFAULT_VALUE;
 
         while (machineMoney != tempMoney) {
             int randomCoin = Randoms.pickNumberInList(Coin.getCoinAmountList());
@@ -39,6 +39,32 @@ public class Coins {
         coins.put(Coin.COIN_50, DEFAULT_VALUE);
         coins.put(Coin.COIN_10, DEFAULT_VALUE);
         return coins;
+    }
+
+    public Map<Coin, Integer> calculateCoins(int money) {
+        Map<Coin, Integer> resultCoin = new TreeMap<>();
+        for (Coin coin : coins.keySet()) {
+            if (money == DEFAULT_VALUE) {
+                return resultCoin;
+            }
+
+            if (coins.get(coin) == DEFAULT_VALUE) {
+                continue;
+            }
+
+            int coinCount = calculateCoinCount(money, coin);
+            money -= coinCount * coin.getAmount();
+            resultCoin.put(coin, coinCount);
+        }
+        return resultCoin;
+    }
+
+    private int calculateCoinCount(int money, Coin coin) {
+        int coinCount = money / coin.getAmount();
+        if (coinCount > coins.get(coin)) {
+            return coins.get(coin);
+        }
+        return coinCount;
     }
 
     public Map<Coin, Integer> getCoins() {
