@@ -13,6 +13,10 @@ public class Beverage {
         this.amount = amount;
     }
 
+    public void BuyBeverage() {
+        amount--;
+    }
+
     public int getPrice() {
         return price;
     }
