@@ -35,7 +35,7 @@ class CoinsTest {
         assertRandomNumberInListTest(
             () -> {
                 Coins coins = new Coins(900);
-                Map<Coin, Integer> actual = coins.calculateCoins(760);
+                Map<Coin, Integer> actual = coins.calculateReturnCoins(760);
                 assertThat(actual.size()).isEqualTo(4);
                 assertThat(actual.get(Coin.COIN_500)).isEqualTo(1);
                 assertThat(actual.get(Coin.COIN_100)).isEqualTo(2);

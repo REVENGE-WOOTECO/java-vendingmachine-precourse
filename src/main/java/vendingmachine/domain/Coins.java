@@ -41,7 +41,7 @@ public class Coins {
         return coins;
     }
 
-    public Map<Coin, Integer> calculateCoins(int money) {
+    public Map<Coin, Integer> calculateReturnCoins(int money) {
         Map<Coin, Integer> resultCoin = new TreeMap<>();
         for (Coin coin : coins.keySet()) {
             if (money == DEFAULT_VALUE) {
