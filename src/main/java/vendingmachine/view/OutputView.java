@@ -8,6 +8,10 @@ public class OutputView {
     private OutputView() {
     }
 
+    public static void printErrorMessage(String message) {
+        System.out.println("\n" + message);
+    }
+
     public static void printInsertMoney(int money) {
         System.out.println("\n투입 금액: " + money + "원");
     }

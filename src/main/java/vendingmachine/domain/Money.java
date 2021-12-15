@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 public class Money {
+    public static final String ERROR_MONEY_IS_LESS_THAN_PRICE = "[ERROR] 돈이 부족합니다.";
 
     private final int money;
 
@@ -14,7 +15,7 @@ public class Money {
 
     public boolean canBuyBeverage(int price) {
         if (money < price) {
-            throw new IllegalArgumentException("\n[ERROR] 돈이 부족합니다.");
+            throw new IllegalArgumentException(ERROR_MONEY_IS_LESS_THAN_PRICE);
         }
         return true;
     }

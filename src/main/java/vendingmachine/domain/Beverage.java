@@ -13,6 +13,7 @@ public class Beverage {
         this.name = name;
         this.price = price;
         this.amount = amount;
+
     }
 
     public void BuyBeverage() {

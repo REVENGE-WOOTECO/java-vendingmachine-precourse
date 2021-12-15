@@ -30,7 +30,7 @@ public class VendingMachineGenerator {
                 OutputView.printVendingMachineCoins(coins.getCoins());
                 wrongInput = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
         return coins;
@@ -45,7 +45,7 @@ public class VendingMachineGenerator {
                 beverages = new Beverages(inputBeverages);
                 wrongInput = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
         return beverages;
@@ -60,7 +60,7 @@ public class VendingMachineGenerator {
                 money = new Money(customerMoney);
                 wrongInput = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
         return money;

@@ -28,7 +28,7 @@ public class VendingMachineController {
                 vendingMachine.buyBeverage(buyBeverageName);
                 wrongInput = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }

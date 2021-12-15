@@ -20,7 +20,7 @@ public enum Coin {
         return Arrays.stream(Coin.values())
             .filter(coin -> coin.getAmount() == amount)
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("\n[ERROR] 동전을 찾을 수 없습니다."));
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 동전을 찾을 수 없습니다."));
     }
 
     public static List<Integer> getCoinAmountList() {
