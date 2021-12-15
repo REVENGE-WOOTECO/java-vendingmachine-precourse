@@ -31,6 +31,10 @@ public class ProductRepo {
 		return quantityList;
 	}
 
+	public List<String> getNameList() {
+		return nameList;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductRepo{" +

@@ -1,6 +1,5 @@
 package vendingmachine.view;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -14,14 +13,18 @@ public class VendingmachineView {
 	private final static String REQUEST_PRODUCT_NAME_PRICE_QUANTITY = "상품명과 가격, 수량을 입력해 주세요.";
 	private final static String ERROR_MESSAGE_WRONG_PRODUCT_FORM = "[ERROR] 상품 등록 양식이 올바르지 않습니다.";
 	private final static String REQUEST_USER_INPUT_MONEY = "투입 금액을 입력해 주세요.";
+	private final static String REQUEST_BUY_PRODUCT = "구매할 상품명을 입력해 주세요.";
 	private final static String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요";
+	private final static String ERROR_MESSAGE_NOT_EXIST_PRODUCT = "[ERROR] 해당 상품은 존재하지 않습니다.";
 
 	private VendingmachineController vendingmachineController = new VendingmachineController();
 
 	private boolean holdingAmountFlag = false;
 	private boolean productFlag = false;
 	private boolean userMoneyFlag = false;
+	private boolean buyProductFlag = false;
 	private int holdingAmount = 0;
+	private int userMoney = 0;
 
 	public void startMachine() {
 		while (!holdingAmountFlag) {
@@ -36,6 +39,10 @@ public class VendingmachineView {
 
 		while(!userMoneyFlag){
 			inputUserMoney();
+		}
+
+		while(!buyProductFlag){
+			inputBuyProduct();
 		}
 	}
 
@@ -72,11 +79,23 @@ public class VendingmachineView {
 	private void inputUserMoney(){
 		System.out.println(REQUEST_USER_INPUT_MONEY);
 		try {
-			vendingmachineController.inputUserMoney(Console.readLine());
+			userMoney = vendingmachineController.inputUserMoney(Console.readLine());
 			userMoneyFlag = true;
 		} catch (IllegalArgumentException e) {
 			System.out.println(ERROR_MESSAGE_NOT_NUMBER);
 			userMoneyFlag = false;
+		}
+	}
+
+	private void inputBuyProduct(){
+		System.out.println("투입금액: " + userMoney + "원");
+		System.out.println(REQUEST_BUY_PRODUCT);
+		try{
+			vendingmachineController.buyProduct(Console.readLine());
+			buyProductFlag = true;
+		}catch(IllegalArgumentException e){
+			System.out.println(ERROR_MESSAGE_NOT_EXIST_PRODUCT);
+			buyProductFlag = false;
 		}
 	}
 }

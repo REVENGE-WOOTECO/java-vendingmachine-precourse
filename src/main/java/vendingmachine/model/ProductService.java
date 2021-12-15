@@ -24,4 +24,5 @@ public class ProductService {
 		List<Integer> quantityList = ProductRepo.getInstance().getQuantityList();
 		return quantityList.stream().mapToInt(i -> i).sum();
 	}
+
 }

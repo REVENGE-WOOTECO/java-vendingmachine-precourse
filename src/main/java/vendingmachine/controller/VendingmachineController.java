@@ -45,19 +45,22 @@ public class VendingmachineController {
 		productService.separateProducts(products);
 	}
 
-	public void inputUserMoney(String money) {
-		validator.userMoneyValidator(money);
-		if(repayment(Integer.parseInt(money))){
-			//잔돈 돌려주기 실행
-		}
+	public int inputUserMoney(String userMoney) {
+		validator.userMoneyValidator(userMoney);
+		// if(repayment(Integer.parseInt(money))){
+		// 	//잔돈 돌려주기 실행
+		// }
+		return Integer.parseInt(userMoney);
 	}
 
 	public boolean repayment(int currentMoney) {
-		System.out.println(moneyValidate.isLowPrice(currentMoney));
-		System.out.println( productValidate.isNoRemainProduct(
-			productService.remainProductNumber()));
 		return moneyValidate.isLowPrice(currentMoney) || productValidate.isNoRemainProduct(
 			productService.remainProductNumber());
 	}
 
+	public void buyProduct(String inputProductName) {
+		if(!productValidate.isExistProductName(inputProductName)){
+			throw new IllegalArgumentException();
+		};
+	}
 }
