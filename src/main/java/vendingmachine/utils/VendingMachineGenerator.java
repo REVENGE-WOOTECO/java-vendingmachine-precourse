@@ -1,9 +1,12 @@
 package vendingmachine.utils;
 
+import java.util.List;
+
 import vendingmachine.domain.Beverages;
 import vendingmachine.domain.Coins;
 import vendingmachine.domain.Money;
 import vendingmachine.domain.VendingMachine;
+import vendingmachine.dto.BeverageDto;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -38,7 +41,7 @@ public class VendingMachineGenerator {
         Beverages beverages = null;
         while (wrongInput) {
             try {
-                String[] inputBeverages = InputView.inputBeverages();
+                List<BeverageDto> inputBeverages = InputView.inputBeverages();
                 beverages = new Beverages(inputBeverages);
                 wrongInput = false;
             } catch (IllegalArgumentException e) {

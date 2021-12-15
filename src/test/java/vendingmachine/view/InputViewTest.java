@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.AfterEach;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import vendingmachine.dto.BeverageDto;
 import vendingmachine.utils.validator.ValidateBeverage;
 import vendingmachine.utils.validator.ValidateMoney;
 
@@ -112,10 +114,10 @@ class InputViewTest {
             command("[콜라,1500,20];[사이다,1000,10]");
 
             // when
-            String[] actual = InputView.inputBeverages();
+            List<BeverageDto> actual = InputView.inputBeverages();
 
             // then
-            assertThat(actual.length).isEqualTo(2);
+            assertThat(actual.size()).isEqualTo(2);
         }
 
         @Test

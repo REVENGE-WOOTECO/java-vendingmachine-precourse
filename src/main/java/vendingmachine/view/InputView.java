@@ -1,6 +1,11 @@
 package vendingmachine.view;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import camp.nextstep.edu.missionutils.Console;
+import vendingmachine.dto.BeverageDto;
 import vendingmachine.utils.validator.ValidateBeverage;
 import vendingmachine.utils.validator.ValidateMoney;
 
@@ -9,7 +14,10 @@ public class InputView {
     public static final String INPUT_BEVERAGES = "\n상품명과 가격, 수량을 입력해 주세요.";
     public static final String INPUT_INSERT_MONEY = "\n투입 금액을 입력해 주세요.";
     public static final String INPUT_BUY_BEVERAGE = "구매할 상품명을 입력해 주세요.";
+
     public static final String SEMICOLON_DETERMINE = ";";
+    public static final String COMMA_DETERMINE = ",";
+    public static final int SUBSTRING_IDX = 1;
 
     private InputView() {
     }
@@ -23,13 +31,21 @@ public class InputView {
         return Integer.parseInt(machineMoney);
     }
 
-    public static String[] inputBeverages() {
+    public static List<BeverageDto> inputBeverages() {
         System.out.println(INPUT_BEVERAGES);
         String[] beverages = Console.readLine().split(SEMICOLON_DETERMINE);
         while (ValidateBeverage.isNotValidInputBeverages(beverages)) {
             beverages = Console.readLine().split(SEMICOLON_DETERMINE);
         }
-        return beverages;
+        return Arrays.stream(beverages)
+            .map(InputView::splitInfos)
+            .map(BeverageDto::from)
+            .collect(Collectors.toList());
+    }
+
+    private static String[] splitInfos(String beverage) {
+        String beverageInfo = beverage.substring(SUBSTRING_IDX, beverage.length() - SUBSTRING_IDX);
+        return beverageInfo.split(COMMA_DETERMINE);
     }
 
     public static int inputInsertMoney() {

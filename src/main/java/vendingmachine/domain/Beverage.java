@@ -3,7 +3,7 @@ package vendingmachine.domain;
 import java.util.Objects;
 
 public class Beverage {
-    public static final String ERROR_BEVERAGE_Sold_OUT = "\n[ERROR] 해당 상품은 품절입니다";
+    public static final String ERROR_BEVERAGE_Sold_OUT = "[ERROR] 해당 상품은 품절입니다.";
 
     private final String name;
     private final int price;

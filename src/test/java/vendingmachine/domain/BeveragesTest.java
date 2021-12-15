@@ -2,8 +2,14 @@ package vendingmachine.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import vendingmachine.dto.BeverageDto;
 
 class BeveragesTest {
 
@@ -11,7 +17,9 @@ class BeveragesTest {
     @DisplayName("상품들의 이름이 중복되는 경우")
     void should_ThrowException_When_BeverageNameDuplicate() {
         // given
-        String[] inputBeverages = "[콜라,1500,20];[콜라,1000,10]".split(";");
+        List<BeverageDto> inputBeverages = new ArrayList<>();
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "20")));
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "20")));
 
         // when
         // then
@@ -24,7 +32,9 @@ class BeveragesTest {
     @DisplayName("상품들 중 최저 가격을 반환하는 지")
     void should_ReturnMinPrice_When_BeveragesFindMinPrice() {
         // given
-        String[] inputBeverages = "[콜라,1500,20];[사이다,1000,10]".split(";");
+        List<BeverageDto> inputBeverages = new ArrayList<>();
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "20")));
+        inputBeverages.add(BeverageDto.from(Arrays.array("사이다", "1000", "20")));
         Beverages beverages = new Beverages(inputBeverages);
 
         // when
@@ -35,10 +45,12 @@ class BeveragesTest {
     }
 
     @Test
-    @DisplayName("상품들 중 최저 가격을 반환하는 지")
+    @DisplayName("상품이름으로 상품 검색이 되는 지")
     void should_ReturnBeverage_When_GivenBeverageName() {
         // given
-        String[] inputBeverages = "[콜라,1500,20];[사이다,1000,10]".split(";");
+        List<BeverageDto> inputBeverages = new ArrayList<>();
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "20")));
+        inputBeverages.add(BeverageDto.from(Arrays.array("사이다", "1000", "20")));
         Beverages beverages = new Beverages(inputBeverages);
 
         // when
@@ -52,7 +64,9 @@ class BeveragesTest {
     @DisplayName("상품을 구매했을 때 상품 수량이 줄어드는 지")
     void should_SubAmount_When_BuyBeverage() {
         // given
-        String[] inputBeverages = "[콜라,1500,1];[사이다,1000,10]".split(";");
+        List<BeverageDto> inputBeverages = new ArrayList<>();
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "1")));
+        inputBeverages.add(BeverageDto.from(Arrays.array("사이다", "1000", "20")));
         Beverages beverages = new Beverages(inputBeverages);
 
         // when
@@ -68,7 +82,9 @@ class BeveragesTest {
     @DisplayName("모든 상품이 품절인 경우")
     void should_True_When_BeveragesIsSoldOut() {
         // given
-        String[] inputBeverages = "[콜라,1500,1];[사이다,1000,1]".split(";");
+        List<BeverageDto> inputBeverages = new ArrayList<>();
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "1")));
+        inputBeverages.add(BeverageDto.from(Arrays.array("사이다", "1000", "1")));
         Beverages beverages = new Beverages(inputBeverages);
 
         // when
@@ -83,7 +99,9 @@ class BeveragesTest {
     @DisplayName("모든 상품이 품절이 아닌 경우")
     void should_False_When_BeveragesIsNotSoldOut() {
         // given
-        String[] inputBeverages = "[콜라,1500,1];[사이다,1000,1]".split(";");
+        List<BeverageDto> inputBeverages = new ArrayList<>();
+        inputBeverages.add(BeverageDto.from(Arrays.array("콜라", "1500", "1")));
+        inputBeverages.add(BeverageDto.from(Arrays.array("사이다", "1000", "20")));
         Beverages beverages = new Beverages(inputBeverages);
 
         // when

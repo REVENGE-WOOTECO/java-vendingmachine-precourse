@@ -1,9 +1,11 @@
 package vendingmachine.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import vendingmachine.dto.BeverageDto;
 
 public class Beverages {
     public static final String ERROR_DUPLICATE_BEVERAGE = "[ERROR] 동일한 상품명은 입력할 수 없습니다. 다시 입력해주세요.";
@@ -17,30 +19,14 @@ public class Beverages {
 
     private final List<Beverage> beverages;
 
-    public Beverages(String[] inputBeverages) {
-        this.beverages = createBeverages(inputBeverages);
-    }
-
-    public List<Beverage> createBeverages(String[] inputBeverages) {
-        List<Beverage> beverages = new ArrayList<>();
-
-        for (String inputBeverage : inputBeverages) {
-            String[] beverageInfos = splitInfos(inputBeverage);
-            String name = beverageInfos[NAME_IDX];
-            int price = Integer.parseInt(beverageInfos[PRICE_IDX]);
-            int amount = Integer.parseInt(beverageInfos[AMOUNT_IDX]);
-            beverages.add(new Beverage(name, price, amount));
-        }
-
+    public Beverages(List<BeverageDto> inputBeverages) {
+        List<Beverage> beverages = inputBeverages.stream()
+            .map(BeverageDto::toEntity)
+            .collect(Collectors.toList());
         validateDuplicate(beverages);
-        return beverages;
+        this.beverages = beverages;
     }
-
-    private String[] splitInfos(String beverage) {
-        String beverageInfo = beverage.substring(SUBSTRING_IDX, beverage.length() - SUBSTRING_IDX);
-        return beverageInfo.split(COMMA_DETERMINE);
-    }
-
+    
     private void validateDuplicate(List<Beverage> beverages) {
         Set<Beverage> nonDuplicateBeverages = new HashSet<>(beverages);
         if (nonDuplicateBeverages.size() != beverages.size()) {
