@@ -23,19 +23,19 @@ public class Menus {
             menus.remove(menu);
         }
     }
-    public boolean isTerminate(HoldingCoins holdingCoins) {
+    public boolean isTerminate(InsertedMoney insertedMoney) {
         if (isAllMenuSoldOut()) {
             return true;
         }
-        return isNotPossibleBuyCheapestMenu(holdingCoins);
+        return isNotPossibleBuyCheapestMenu(insertedMoney);
     }
 
     private boolean isAllMenuSoldOut() {
         return menus.isEmpty();
     }
 
-    private boolean isNotPossibleBuyCheapestMenu(HoldingCoins holdingCoins) {
-        return holdingCoins.getSumOfCoins() < menus.stream()
+    private boolean isNotPossibleBuyCheapestMenu(InsertedMoney insertedMoney) {
+        return insertedMoney.getInsertedMoney() < menus.stream()
                 .min(Comparator.comparing(Menu::getPrice))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 메뉴가 다 팔렸습니다."))
                 .getPrice();

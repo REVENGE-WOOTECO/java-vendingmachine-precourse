@@ -17,4 +17,8 @@ public class InsertedMoney {
     public void buyMenu(Menu menu) {
         this.insertedMoney -= menu.getPrice();
     }
+
+    public int getInsertedMoney() {
+        return this.insertedMoney;
+    }
 }
