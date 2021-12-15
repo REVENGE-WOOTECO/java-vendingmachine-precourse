@@ -12,6 +12,10 @@ public class Money {
         return new Money(this.money - price);
     }
 
+    public boolean canBuyBeverage(int price) {
+        return money >= price;
+    }
+
     public int getMoney() {
         return money;
     }
