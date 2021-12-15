@@ -23,6 +23,14 @@ public class ProductRepo {
 		quantityList.add(dto.getQuantity());
 	}
 
+	public List<Integer> getPriceList() {
+		return priceList;
+	}
+
+	public List<Integer> getQuantityList() {
+		return quantityList;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductRepo{" +

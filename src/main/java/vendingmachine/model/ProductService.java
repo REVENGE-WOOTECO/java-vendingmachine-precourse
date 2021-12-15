@@ -1,5 +1,7 @@
 package vendingmachine.model;
 
+import java.util.List;
+
 public class ProductService {
 	public void separateProducts(String products) {
 		String[] productsArray = products.split(";");
@@ -16,5 +18,10 @@ public class ProductService {
 		ProductDTO productDTO = new ProductDTO(productArray[0], Integer.parseInt(productArray[1]),
 			Integer.parseInt(productArray[2]));
 		ProductRepo.getInstance().saveProduct(productDTO);
+	}
+
+	public int remainProductNumber() {
+		List<Integer> quantityList = ProductRepo.getInstance().getQuantityList();
+		return quantityList.stream().mapToInt(i -> i).sum();
 	}
 }
