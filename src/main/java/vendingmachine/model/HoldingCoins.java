@@ -73,4 +73,26 @@ public class HoldingCoins {
                 .mapToInt(coin -> coin.getKey().getAmount() * coin.getValue())
                 .sum();
     }
+
+    public Map<Coin, Integer> getChanges(InsertedMoney insertedMoney) {
+        Map<Coin, Integer> changes = new TreeMap<>();
+        for (Map.Entry<Coin, Integer> coinAndCount : coins.entrySet()) {
+            Coin coin = coinAndCount.getKey();
+            int count = coinAndCount.getValue();
+            int possibleCoinCount = getPossibleCoinCount(insertedMoney.getInsertedMoney(), coin.getAmount(), count);
+            insertedMoney.calculateChange(possibleCoinCount * coin.getAmount());
+            if(possibleCoinCount > 0)
+                changes.put(coin, possibleCoinCount);
+        }
+        return changes;
+    }
+
+    public int getPossibleCoinCount(int insertedMoney, int amount, int count) {
+        int returnCount = 0;
+        while (insertedMoney >= amount) {
+            insertedMoney -= amount;
+            returnCount += 1;
+        }
+        return Integer.min(returnCount, count);
+    }
 }

@@ -21,4 +21,8 @@ public class InsertedMoney {
     public int getInsertedMoney() {
         return this.insertedMoney;
     }
+
+    public void calculateChange(int totalAmount) {
+        this.insertedMoney -= totalAmount;
+    }
 }
