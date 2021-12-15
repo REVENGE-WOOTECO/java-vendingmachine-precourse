@@ -67,7 +67,6 @@ public class VendingmachineView {
 			System.out.println(ERROR_MESSAGE_WRONG_PRODUCT_FORM);
 			productFlag = false;
 		}
-
 	}
 
 	private void inputUserMoney(){

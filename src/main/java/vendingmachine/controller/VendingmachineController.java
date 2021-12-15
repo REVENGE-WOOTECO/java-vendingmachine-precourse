@@ -5,9 +5,11 @@ import java.util.HashMap;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.model.Coin;
+import vendingmachine.model.ProductService;
 
 public class VendingmachineController {
 	private Validator validator = new Validator();
+	private ProductService productService = new ProductService();
 
 	public int inputHoldingAmount(String money) {
 		validator.holdingAmountValidator(money);
@@ -34,6 +36,11 @@ public class VendingmachineController {
 
 	public void inputProducts(String products){
 		validator.productsValidator(products);
+		manageProducts(products);
+	}
+
+	private void manageProducts(String products){
+		productService.separateProducts(products);
 	}
 
 	public void inputUserMoney(String money){
