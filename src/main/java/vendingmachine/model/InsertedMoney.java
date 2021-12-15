@@ -3,7 +3,7 @@ package vendingmachine.model;
 public class InsertedMoney {
     private int insertedMoney;
 
-    InsertedMoney(String money) {
+    public InsertedMoney(String money) {
         isValidMoney(money);
         this.insertedMoney = Integer.parseInt(money);
     }

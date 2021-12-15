@@ -8,7 +8,7 @@ public class HoldingCoins {
     private final static List<Integer> usableCoinList = Arrays.asList(10, 50, 100, 500);
     private Map<Coin, Integer> coins;
 
-    HoldingCoins(String inputMoney) {
+    public HoldingCoins(String inputMoney) {
         isValidMoney(inputMoney);
         coins = randomPickCoinsInList(inputMoney);
     }

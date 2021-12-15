@@ -5,7 +5,7 @@ public class Menu {
     private final int price;
     private int count;
 
-    Menu(String name, String price, String count) {
+    public Menu(String name, String price, String count) {
         isValidInput(name, price, count);
         this.name = name;
         this.price = Integer.parseInt(price);

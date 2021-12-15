@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Menus {
     private final Set<Menu> menus;
 
-    Menus(Set<Menu> menus) {
+    public Menus(Set<Menu> menus) {
         isValidMenus(menus);
         this.menus = new HashSet<>(menus);
     }

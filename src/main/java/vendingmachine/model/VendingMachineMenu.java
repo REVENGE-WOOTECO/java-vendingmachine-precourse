@@ -10,7 +10,7 @@ public class VendingMachineMenu {
 
     private Set<Menu> menus;
 
-    private VendingMachineMenu(String inputMenu) {
+    public VendingMachineMenu(String inputMenu) {
         String[] menuArray = inputMenu.split(";");
         for (String menu : menuArray) {
             isValidPattern(menu);
