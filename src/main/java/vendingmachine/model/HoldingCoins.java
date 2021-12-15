@@ -31,7 +31,7 @@ public class HoldingCoins {
     }
 
     private Map<Coin, Integer> randomPickCoinsInList(String inputMoney) {
-        Map<Coin, Integer> randomCoinHashMap = new HashMap<>();
+        Map<Coin, Integer> randomCoinHashMap = new TreeMap<>();
         int currentMoney = Integer.parseInt(inputMoney);
         while (currentMoney >= usableCoinList.stream()
                 .min(Comparator.comparing(coin -> coin))
@@ -57,6 +57,10 @@ public class HoldingCoins {
             return Coin.COIN_50;
         }
         return Coin.COIN_10;
+    }
+
+    public int getCoinCount(Coin coin) {
+        return this.coins.getOrDefault(coin, 0);
     }
 
     public Map<Coin, Integer> getCoins() {
