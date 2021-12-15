@@ -65,6 +65,9 @@ public class VendingmachineController {
 		if(!productValidate.isExistProductName(inputProductName)){
 			throw new IllegalArgumentException();
 		}
+		if(decuctMoney(inputProductName, userMoney) < 0){
+			throw new IllegalArgumentException();
+		}
 		if(isrepayment(userMoney)){
 			//잔돈 메소드
 		}
@@ -73,4 +76,5 @@ public class VendingmachineController {
 	public int decuctMoney(String inputProductName, int userMoney){
 		return moneyService.deductMoney(inputProductName, userMoney);
 	}
+
 }

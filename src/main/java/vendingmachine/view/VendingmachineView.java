@@ -15,7 +15,7 @@ public class VendingmachineView {
 	private final static String REQUEST_USER_INPUT_MONEY = "투입 금액을 입력해 주세요.";
 	private final static String REQUEST_BUY_PRODUCT = "구매할 상품명을 입력해 주세요.";
 	private final static String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요";
-	private final static String ERROR_MESSAGE_NOT_EXIST_PRODUCT = "[ERROR] 해당 상품은 존재하지 않습니다.";
+	private final static String ERROR_MESSAGE_NOT_EXIST_PRODUCT = "[ERROR] 해당 상품은 구매할 수 없습니다.";
 
 	private VendingmachineController vendingmachineController = new VendingmachineController();
 
