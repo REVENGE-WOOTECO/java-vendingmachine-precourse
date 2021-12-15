@@ -41,7 +41,7 @@ public class VendingmachineView {
 			inputUserMoney();
 		}
 
-		while(!buyProductFlag){
+		while(!buyProductFlag || !vendingmachineController.isrepayment(userMoney)){
 			inputBuyProduct();
 		}
 	}
@@ -91,7 +91,9 @@ public class VendingmachineView {
 		System.out.println("투입금액: " + userMoney + "원");
 		System.out.println(REQUEST_BUY_PRODUCT);
 		try{
-			vendingmachineController.buyProduct(Console.readLine());
+			String inputProductName = Console.readLine();
+			vendingmachineController.buyProduct(inputProductName, userMoney);
+			userMoney = vendingmachineController.decuctMoney(inputProductName,userMoney);
 			buyProductFlag = true;
 		}catch(IllegalArgumentException e){
 			System.out.println(ERROR_MESSAGE_NOT_EXIST_PRODUCT);

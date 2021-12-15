@@ -5,11 +5,14 @@ import java.util.HashMap;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.model.Coin;
+import vendingmachine.model.MoneyRepo;
+import vendingmachine.model.MoneyService;
 import vendingmachine.model.ProductService;
 
 public class VendingmachineController {
 	private Validator validator = new Validator();
 	private ProductService productService = new ProductService();
+	private MoneyService moneyService = new MoneyService();
 	private MoneyValidate moneyValidate = new MoneyValidate();
 	private ProductValidate productValidate = new ProductValidate();
 
@@ -53,14 +56,21 @@ public class VendingmachineController {
 		return Integer.parseInt(userMoney);
 	}
 
-	public boolean repayment(int currentMoney) {
+	public boolean isrepayment(int currentMoney) {
 		return moneyValidate.isLowPrice(currentMoney) || productValidate.isNoRemainProduct(
 			productService.remainProductNumber());
 	}
 
-	public void buyProduct(String inputProductName) {
+	public void buyProduct(String inputProductName, int userMoney) {
 		if(!productValidate.isExistProductName(inputProductName)){
 			throw new IllegalArgumentException();
-		};
+		}
+		if(isrepayment(userMoney)){
+			//잔돈 메소드
+		}
+	}
+
+	public int decuctMoney(String inputProductName, int userMoney){
+		return moneyService.deductMoney(inputProductName, userMoney);
 	}
 }

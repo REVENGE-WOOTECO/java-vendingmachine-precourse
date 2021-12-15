@@ -35,6 +35,11 @@ public class ProductRepo {
 		return nameList;
 	}
 
+	public int priceForProduct(String product){
+		int productIndex = nameList.indexOf(product);
+		return priceList.get(productIndex);
+	}
+
 	@Override
 	public String toString() {
 		return "ProductRepo{" +
