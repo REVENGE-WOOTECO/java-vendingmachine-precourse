@@ -1,7 +1,5 @@
 package vendingmachine.model;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 public enum Coin {
     COIN_500(500),
     COIN_100(100),

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class HoldingCoins {
     private final static List<Integer> usableCoinList = Arrays.asList(10, 50, 100, 500);
-    private final Map<Coin, Integer> coins;
+    private Map<Coin, Integer> coins;
 
     HoldingCoins(String inputMoney) {
         isValidMoney(inputMoney);
@@ -65,5 +65,12 @@ public class HoldingCoins {
 
     public Map<Coin, Integer> getCoins() {
         return new HashMap<>(this.coins);
+    }
+
+    public int getSumOfCoins() {
+        return coins.entrySet()
+                .stream()
+                .mapToInt(coin -> coin.getKey().getAmount() * coin.getValue())
+                .sum();
     }
 }
