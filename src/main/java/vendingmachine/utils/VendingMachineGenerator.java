@@ -24,12 +24,12 @@ public class VendingMachineGenerator {
             try {
                 int vendingMachineMoney = InputView.inputVendingMachineMoney();
                 coins = new Coins(vendingMachineMoney);
+                OutputView.printVendingMachineCoins(coins.getCoins());
                 wrongInput = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        OutputView.printVendingMachineCoins(coins.getCoins());
         return coins;
     }
 

@@ -1,4 +1,4 @@
-package vendingmachine.validator;
+package vendingmachine.utils.validator;
 
 import vendingmachine.domain.Coin;
 
@@ -11,10 +11,10 @@ public class ValidateBeverage {
     public static final int PRICE_IDX = 1;
     public static final int AMOUNT_IDX = 2;
 
-    public static final String ERROR_BEVERAGE_INPUT = "[ERROR] 올바르지 않는 상품 입력입니다. 다시 입력해주세요.";
-    public static final String ERROR_PRICE_UNIT = "[ERROR] 상품 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
-    public static final String ERROR_PRICE_RANGE = "[ERROR] 상품 금액은 100원 이상으로 입력해야합니다. 다시 입력해주세요.";
-    public static final String ERROR_AMOUNT_RANGE = "[ERROR] 상품 수는 1개 이상으로 입력해야합니다. 다시 입력해주세요.";
+    public static final String ERROR_BEVERAGE_INPUT = "\n[ERROR] 올바르지 않는 상품 입력입니다. 다시 입력해주세요.";
+    public static final String ERROR_PRICE_UNIT = "\n[ERROR] 상품 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
+    public static final String ERROR_PRICE_RANGE = "\n[ERROR] 상품 금액은 100원 이상으로 입력해야합니다. 다시 입력해주세요.";
+    public static final String ERROR_AMOUNT_RANGE = "\n[ERROR] 상품 수는 1개 이상으로 입력해야합니다. 다시 입력해주세요.";
 
     public static boolean isNotValidInputBeverages(String[] beverages) {
         try {

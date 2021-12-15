@@ -1,8 +1,8 @@
 package vendingmachine.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.validator.ValidateBeverage;
-import vendingmachine.validator.ValidateMoney;
+import vendingmachine.utils.validator.ValidateBeverage;
+import vendingmachine.utils.validator.ValidateMoney;
 
 public class InputView {
     public static final String INPUT_VENDING_MACHINE_MONEY = "자판기가 보유하고 있는 금액을 입력해 주세요.";

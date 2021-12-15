@@ -13,8 +13,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import vendingmachine.validator.ValidateBeverage;
-import vendingmachine.validator.ValidateMoney;
+import vendingmachine.utils.validator.ValidateBeverage;
+import vendingmachine.utils.validator.ValidateMoney;
 
 class InputViewTest {
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();

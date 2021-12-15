@@ -14,7 +14,7 @@ public class Money {
 
     public boolean canBuyBeverage(int price) {
         if (money < price) {
-            throw new IllegalArgumentException("[ERROR] 돈이 부족합니다.");
+            throw new IllegalArgumentException("\n[ERROR] 돈이 부족합니다.");
         }
         return true;
     }
