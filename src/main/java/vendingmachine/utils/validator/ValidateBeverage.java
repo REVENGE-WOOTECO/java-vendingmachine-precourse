@@ -4,19 +4,19 @@ import vendingmachine.domain.Coin;
 import vendingmachine.view.OutputView;
 
 public class ValidateBeverage {
-    public static final String REGEX = "\\[[a-zA-Z0-9가-힣]+,\\d{3,},\\d+]";
-    public static final String COMMA_DETERMINE = ",";
-    public static final int SUBSTRING_IDX = 1;
-    public static final int MIN_AMOUNT = 1;
-    public static final int REMAINDER_ZERO = 0;
-    public static final int MIN_PRICE = 100;
-    public static final int PRICE_IDX = 1;
-    public static final int AMOUNT_IDX = 2;
+    private static final String REGEX = "\\[[a-zA-Z0-9가-힣]+,\\d{3,},\\d+]";
+    private static final String COMMA_DETERMINE = ",";
+    private static final int SUBSTRING_IDX = 1;
+    private static final int MIN_AMOUNT = 1;
+    private static final int REMAINDER_ZERO = 0;
+    private static final int MIN_PRICE = 100;
+    private static final int PRICE_IDX = 1;
+    private static final int AMOUNT_IDX = 2;
 
-    public static final String ERROR_BEVERAGE_INPUT = "[ERROR] 올바르지 않는 상품 입력입니다. 다시 입력해주세요.";
-    public static final String ERROR_PRICE_UNIT = "[ERROR] 상품 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
-    public static final String ERROR_PRICE_RANGE = "[ERROR] 상품 금액은 100원 이상으로 입력해야합니다. 다시 입력해주세요.";
-    public static final String ERROR_AMOUNT_RANGE = "[ERROR] 상품 수는 1개 이상으로 입력해야합니다. 다시 입력해주세요.";
+    private static final String ERROR_BEVERAGE_INPUT = "[ERROR] 올바르지 않는 상품 입력입니다. 다시 입력해주세요.";
+    private static final String ERROR_PRICE_UNIT = "[ERROR] 상품 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
+    private static final String ERROR_PRICE_RANGE = "[ERROR] 상품 금액은 100원 이상으로 입력해야합니다. 다시 입력해주세요.";
+    private static final String ERROR_AMOUNT_RANGE = "[ERROR] 상품 수는 1개 이상으로 입력해야합니다. 다시 입력해주세요.";
 
     public static boolean isNotValidInputBeverages(String[] beverages) {
         try {
@@ -62,5 +62,4 @@ public class ValidateBeverage {
             throw new IllegalArgumentException(ERROR_AMOUNT_RANGE);
         }
     }
-
 }

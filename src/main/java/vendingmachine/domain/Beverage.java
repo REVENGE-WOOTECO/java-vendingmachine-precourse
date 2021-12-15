@@ -5,7 +5,7 @@ import java.util.Objects;
 import vendingmachine.utils.validator.ValidateBeverage;
 
 public class Beverage {
-    public static final String ERROR_BEVERAGE_Sold_OUT = "[ERROR] 해당 상품은 품절입니다.";
+    private static final String ERROR_BEVERAGE_Sold_OUT = "[ERROR] 해당 상품은 품절입니다.";
 
     private final String name;
     private final int price;

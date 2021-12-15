@@ -7,8 +7,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.utils.validator.ValidateMoney;
 
 public class Coins {
-    public static final int DEFAULT_VALUE = 0;
-    public static final int ADD_VALUE = 1;
+    private static final int DEFAULT_VALUE = 0;
+    private static final int ADD_VALUE = 1;
 
     private final Map<Coin, Integer> coins;
 

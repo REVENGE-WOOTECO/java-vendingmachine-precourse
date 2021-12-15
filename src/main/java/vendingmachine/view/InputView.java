@@ -10,14 +10,14 @@ import vendingmachine.utils.validator.ValidateBeverage;
 import vendingmachine.utils.validator.ValidateMoney;
 
 public class InputView {
-    public static final String INPUT_VENDING_MACHINE_MONEY = "자판기가 보유하고 있는 금액을 입력해 주세요.";
-    public static final String INPUT_BEVERAGES = "\n상품명과 가격, 수량을 입력해 주세요.";
-    public static final String INPUT_INSERT_MONEY = "\n투입 금액을 입력해 주세요.";
-    public static final String INPUT_BUY_BEVERAGE = "구매할 상품명을 입력해 주세요.";
+    private static final String INPUT_VENDING_MACHINE_MONEY = "자판기가 보유하고 있는 금액을 입력해 주세요.";
+    private static final String INPUT_BEVERAGES = "\n상품명과 가격, 수량을 입력해 주세요.";
+    private static final String INPUT_INSERT_MONEY = "\n투입 금액을 입력해 주세요.";
+    private static final String INPUT_BUY_BEVERAGE = "구매할 상품명을 입력해 주세요.";
 
-    public static final String SEMICOLON_DETERMINE = ";";
-    public static final String COMMA_DETERMINE = ",";
-    public static final int SUBSTRING_IDX = 1;
+    private static final String SEMICOLON_DETERMINE = ";";
+    private static final String COMMA_DETERMINE = ",";
+    private static final int SUBSTRING_IDX = 1;
 
     private InputView() {
     }

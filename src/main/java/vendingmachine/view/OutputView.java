@@ -5,6 +5,7 @@ import java.util.Map;
 import vendingmachine.domain.Coin;
 
 public class OutputView {
+
     private OutputView() {
     }
 
@@ -36,5 +37,4 @@ public class OutputView {
             System.out.println(coin.getAmount() + "원 - " + coins.get(coin) + "개");
         }
     }
-
 }

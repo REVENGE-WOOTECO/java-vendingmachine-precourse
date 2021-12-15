@@ -15,11 +15,16 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import vendingmachine.dto.BeverageDto;
-import vendingmachine.utils.validator.ValidateBeverage;
-import vendingmachine.utils.validator.ValidateMoney;
 
 class InputViewTest {
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private static final String ERROR_BEVERAGE_INPUT = "[ERROR] 올바르지 않는 상품 입력입니다. 다시 입력해주세요.";
+    private static final String ERROR_PRICE_UNIT = "[ERROR] 상품 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
+    private static final String ERROR_PRICE_RANGE = "[ERROR] 상품 금액은 100원 이상으로 입력해야합니다. 다시 입력해주세요.";
+    private static final String ERROR_AMOUNT_RANGE = "[ERROR] 상품 수는 1개 이상으로 입력해야합니다. 다시 입력해주세요.";
+    private static final String ERROR_MONEY_NOT_DIGIT = "[ERROR] 금액은 숫자여야 합니다. 다시 입력해주세요.";
+    private static final String ERROR_MONEY_NEGATIVE = "[ERROR] 금액으로 음수를 입력할 수 없습니다. 다시 입력해주세요.";
+    private static final String ERROR_MONEY_UNIT = "[ERROR] 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
 
     @BeforeEach
     public void setUpStreams() {
@@ -66,7 +71,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateMoney.ERROR_MONEY_NOT_DIGIT);
+            assertThat(output.toString()).contains(ERROR_MONEY_NOT_DIGIT);
         }
 
         @Test
@@ -82,7 +87,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateMoney.ERROR_MONEY_UNIT);
+            assertThat(output.toString()).contains(ERROR_MONEY_UNIT);
         }
 
         @Test
@@ -98,7 +103,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateMoney.ERROR_MONEY_NEGATIVE);
+            assertThat(output.toString()).contains(ERROR_MONEY_NEGATIVE);
         }
 
     }
@@ -133,7 +138,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateBeverage.ERROR_BEVERAGE_INPUT);
+            assertThat(output.toString()).contains(ERROR_BEVERAGE_INPUT);
         }
 
         @Test
@@ -149,7 +154,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateBeverage.ERROR_PRICE_UNIT);
+            assertThat(output.toString()).contains(ERROR_PRICE_UNIT);
         }
 
         @Test
@@ -165,7 +170,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateBeverage.ERROR_PRICE_RANGE);
+            assertThat(output.toString()).contains(ERROR_PRICE_RANGE);
         }
 
         @Test
@@ -181,7 +186,7 @@ class InputViewTest {
             }
 
             // then
-            assertThat(output.toString()).contains(ValidateBeverage.ERROR_AMOUNT_RANGE);
+            assertThat(output.toString()).contains(ERROR_AMOUNT_RANGE);
         }
 
     }

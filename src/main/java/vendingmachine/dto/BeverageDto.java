@@ -3,9 +3,9 @@ package vendingmachine.dto;
 import vendingmachine.domain.Beverage;
 
 public class BeverageDto {
-    public static final int NAME_IDX = 0;
-    public static final int PRICE_IDX = 1;
-    public static final int AMOUNT_IDX = 2;
+    private static final int NAME_IDX = 0;
+    private static final int PRICE_IDX = 1;
+    private static final int AMOUNT_IDX = 2;
 
     private final String name;
     private final int price;
