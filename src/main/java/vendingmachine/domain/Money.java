@@ -12,11 +12,14 @@ public class Money {
         return new Money(this.money - price);
     }
 
-    public boolean canNotBuyBeverage(int price) {
-        return money < price;
+    public boolean canBuyBeverage(int price) {
+        if (money < price) {
+            throw new IllegalArgumentException("[ERROR] 돈이 부족합니다.");
+        }
+        return true;
     }
 
-    public int getMoney() {
+    public int getValue() {
         return money;
     }
 }
