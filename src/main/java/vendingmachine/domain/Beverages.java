@@ -60,6 +60,11 @@ public class Beverages {
         beverage.BuyBeverage();
     }
 
+    public boolean isAllSoled() {
+        return beverages.stream()
+            .allMatch(Beverage::isSoldOut);
+    }
+
     public Beverage findBeverageByName(String name) {
         return beverages.stream()
             .filter(beverage -> beverage.isSameName(name))

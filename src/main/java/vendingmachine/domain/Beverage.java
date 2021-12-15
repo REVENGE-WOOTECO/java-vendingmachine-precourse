@@ -16,7 +16,7 @@ public class Beverage {
     }
 
     public void BuyBeverage() {
-        if (amount == 0) {
+        if (isSoldOut()) {
             throw new IllegalArgumentException(ERROR_BEVERAGE_AMOUNT_ZERO);
         }
         amount--;
@@ -24,6 +24,10 @@ public class Beverage {
 
     public boolean isSameName(String name) {
         return name.equals(this.name);
+    }
+
+    public boolean isSoldOut() {
+        return amount == 0;
     }
 
     public int getPrice() {
