@@ -13,6 +13,10 @@ public class Beverage {
         this.amount = amount;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

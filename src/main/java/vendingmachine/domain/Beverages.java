@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Beverages {
     public static final String ERROR_DUPLICATE_BEVERAGE = "[ERROR] 동일한 상품명은 입력할 수 없습니다. 다시 입력해주세요.";
+    public static final String ERROR_NOT_FIND_MIN_PRICE = "[ERROR] 최저 가격을 찾을 수 없습니다.";
     public static final String COMMA_DETERMINE = ",";
     public static final int SUBSTRING_IDX = 1;
     public static final int NAME_IDX = 0;
@@ -44,5 +45,12 @@ public class Beverages {
         if (nonDuplicateBeverages.size() != beverages.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_BEVERAGE);
         }
+    }
+
+    public int findMinPrice() {
+        return beverages.stream()
+            .map(Beverage::getPrice)
+            .min(Integer::compare)
+            .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FIND_MIN_PRICE));
     }
 }
