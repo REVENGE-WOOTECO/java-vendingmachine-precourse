@@ -3,6 +3,8 @@ package vendingmachine.domain;
 import java.util.Objects;
 
 public class Beverage {
+    public static final String ERROR_BEVERAGE_AMOUNT_ZERO = "[ERROR] 동일한 상품명은 입력할 수 없습니다. 다시 입력해주세요.";
+
     private final String name;
     private final int price;
     private int amount;
@@ -14,6 +16,9 @@ public class Beverage {
     }
 
     public void BuyBeverage() {
+        if (amount == 0) {
+            throw new IllegalArgumentException(ERROR_BEVERAGE_AMOUNT_ZERO);
+        }
         amount--;
     }
 

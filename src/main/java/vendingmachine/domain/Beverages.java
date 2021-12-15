@@ -55,6 +55,11 @@ public class Beverages {
             .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FIND_MIN_PRICE));
     }
 
+    public void BuyBeverage(String name) {
+        Beverage beverage = findBeverageByName(name);
+        beverage.BuyBeverage();
+    }
+
     public Beverage findBeverageByName(String name) {
         return beverages.stream()
             .filter(beverage -> beverage.isSameName(name))
