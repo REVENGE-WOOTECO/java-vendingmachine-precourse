@@ -17,6 +17,10 @@ public class Beverage {
         amount--;
     }
 
+    public boolean isSameName(String name) {
+        return name.equals(this.name);
+    }
+
     public int getPrice() {
         return price;
     }
