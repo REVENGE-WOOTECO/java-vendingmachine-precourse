@@ -18,7 +18,6 @@ import vendingmachine.validator.ValidateMoney;
 
 class InputViewTest {
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private final InputView inputView = new InputView();
 
     @BeforeEach
     public void setUpStreams() {
@@ -47,7 +46,7 @@ class InputViewTest {
             command("300");
 
             // when
-            int actual = inputView.inputVendingMachineMoney();
+            int actual = InputView.inputVendingMachineMoney();
             // then
             assertThat(actual).isEqualTo(300);
         }
@@ -60,7 +59,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputVendingMachineMoney();
+                InputView.inputVendingMachineMoney();
             } catch (final NoSuchElementException ignore) {
             }
 
@@ -76,7 +75,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputVendingMachineMoney();
+                InputView.inputVendingMachineMoney();
             } catch (final NoSuchElementException ignore) {
             }
 
@@ -92,7 +91,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputVendingMachineMoney();
+                InputView.inputVendingMachineMoney();
             } catch (final NoSuchElementException ignore) {
             }
 
@@ -113,7 +112,7 @@ class InputViewTest {
             command("[콜라,1500,20];[사이다,1000,10]");
 
             // when
-            String[] actual = inputView.inputBeverages();
+            String[] actual = InputView.inputBeverages();
 
             // then
             assertThat(actual.length).isEqualTo(2);
@@ -127,7 +126,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputBeverages();
+                InputView.inputBeverages();
             } catch (final NoSuchElementException ignore) {
             }
 
@@ -143,7 +142,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputBeverages();
+                InputView.inputBeverages();
             } catch (final NoSuchElementException ignore) {
             }
 
@@ -159,7 +158,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputBeverages();
+                InputView.inputBeverages();
             } catch (final NoSuchElementException ignore) {
             }
 
@@ -175,7 +174,7 @@ class InputViewTest {
 
             // when
             try {
-                inputView.inputBeverages();
+                InputView.inputBeverages();
             } catch (final NoSuchElementException ignore) {
             }
 

@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Map;
@@ -26,6 +27,23 @@ class CoinsTest {
 
         // then
         assertThat(actual).isEqualTo(money);
+    }
+
+    @Test
+    @DisplayName("남은 금액을 통해 옳바른 잔돈을 반환하는 지")
+    void Should_ReturnCoins_When_ReturnCoins() {
+        assertRandomNumberInListTest(
+            () -> {
+                Coins coins = new Coins(900);
+                Map<Coin, Integer> actual = coins.calculateCoins(760);
+                assertThat(actual.size()).isEqualTo(4);
+                assertThat(actual.get(Coin.COIN_500)).isEqualTo(1);
+                assertThat(actual.get(Coin.COIN_100)).isEqualTo(2);
+                assertThat(actual.get(Coin.COIN_50)).isEqualTo(1);
+                assertThat(actual.get(Coin.COIN_10)).isEqualTo(1);
+            },
+            10, 500, 100, 100, 100, 50, 10, 10, 10, 10, 10
+        );
     }
 
 }
