@@ -16,6 +16,7 @@ public class VendingmachineView {
 	private final static String REQUEST_BUY_PRODUCT = "구매할 상품명을 입력해 주세요.";
 	private final static String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요";
 	private final static String ERROR_MESSAGE_NOT_EXIST_PRODUCT = "[ERROR] 해당 상품은 구매할 수 없습니다.";
+	private final static String MESSAGE_REPAYMENT = "잔돈";
 
 	private VendingmachineController vendingmachineController = new VendingmachineController();
 
@@ -25,6 +26,7 @@ public class VendingmachineView {
 	private boolean buyProductFlag = false;
 	private int holdingAmount = 0;
 	private int userMoney = 0;
+	private HashMap<Integer, Integer> machineCoin = null;
 
 	public void startMachine() {
 		while (!holdingAmountFlag) {
@@ -37,13 +39,15 @@ public class VendingmachineView {
 			inputProducts();
 		}
 
-		while(!userMoneyFlag){
+		while (!userMoneyFlag) {
 			inputUserMoney();
 		}
 
-		while(!buyProductFlag || !vendingmachineController.isrepayment(userMoney)){
+		while (!buyProductFlag || !vendingmachineController.isrepayment(userMoney)) {
 			inputBuyProduct();
 		}
+
+		repayment();
 	}
 
 	private void inputHoldingAmount() {
@@ -58,6 +62,8 @@ public class VendingmachineView {
 	}
 
 	private void printCoin(HashMap<Integer, Integer> coinMap) {
+		System.out.println();
+		machineCoin = coinMap;
 		System.out.println(MESSAGE_COIN_AMOUNT);
 		System.out.println("500원 - " + coinMap.get(Coin.COIN_500.getAmount()) + "개");
 		System.out.println("100원 - " + coinMap.get(Coin.COIN_100.getAmount()) + "개");
@@ -65,18 +71,20 @@ public class VendingmachineView {
 		System.out.println("10원 - " + coinMap.get(Coin.COIN_10.getAmount()) + "개");
 	}
 
-	private void inputProducts(){
+	private void inputProducts() {
+		System.out.println();
 		System.out.println(REQUEST_PRODUCT_NAME_PRICE_QUANTITY);
-		try{
+		try {
 			vendingmachineController.inputProducts(Console.readLine());
 			productFlag = true;
-		} catch(IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			System.out.println(ERROR_MESSAGE_WRONG_PRODUCT_FORM);
 			productFlag = false;
 		}
 	}
 
-	private void inputUserMoney(){
+	private void inputUserMoney() {
+		System.out.println();
 		System.out.println(REQUEST_USER_INPUT_MONEY);
 		try {
 			userMoney = vendingmachineController.inputUserMoney(Console.readLine());
@@ -87,17 +95,31 @@ public class VendingmachineView {
 		}
 	}
 
-	private void inputBuyProduct(){
+	private void inputBuyProduct() {
+		System.out.println();
 		System.out.println("투입금액: " + userMoney + "원");
 		System.out.println(REQUEST_BUY_PRODUCT);
-		try{
+		try {
 			String inputProductName = Console.readLine();
 			vendingmachineController.buyProduct(inputProductName, userMoney);
-			userMoney = vendingmachineController.decuctMoney(inputProductName,userMoney);
+			userMoney = vendingmachineController.decuctMoney(inputProductName, userMoney);
 			buyProductFlag = true;
-		}catch(IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			System.out.println(ERROR_MESSAGE_NOT_EXIST_PRODUCT);
 			buyProductFlag = false;
 		}
+	}
+
+	private void repayment() {
+		HashMap<Integer, Integer> repaymentMap = vendingmachineController.repayment(machineCoin, userMoney);
+		System.out.println();
+		System.out.println("투입금액: " + userMoney + "원");
+		System.out.println(MESSAGE_REPAYMENT);
+
+		repaymentMap.forEach((key, value) -> {
+			if (value != 0) {
+				System.out.println(key + "원 - " + value + "개");
+			}
+		});
 	}
 }

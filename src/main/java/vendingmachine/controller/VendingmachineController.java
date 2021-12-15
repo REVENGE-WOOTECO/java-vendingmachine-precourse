@@ -62,19 +62,39 @@ public class VendingmachineController {
 	}
 
 	public void buyProduct(String inputProductName, int userMoney) {
-		if(!productValidate.isExistProductName(inputProductName)){
+		if (!productValidate.isExistProductName(inputProductName)) {
 			throw new IllegalArgumentException();
 		}
-		if(decuctMoney(inputProductName, userMoney) < 0){
+		if (decuctMoney(inputProductName, userMoney) < 0) {
 			throw new IllegalArgumentException();
-		}
-		if(isrepayment(userMoney)){
-			//잔돈 메소드
 		}
 	}
 
-	public int decuctMoney(String inputProductName, int userMoney){
+	public int decuctMoney(String inputProductName, int userMoney) {
 		return moneyService.deductMoney(inputProductName, userMoney);
+	}
+
+	public HashMap<Integer, Integer> repayment(HashMap<Integer, Integer> machineCoin, int userMoney) {
+		HashMap<Integer, Integer> repayment = new HashMap<>();
+
+		repayment.put(Coin.COIN_500.getAmount(),
+			Math.min(userMoney / Coin.COIN_500.getAmount(), machineCoin.get(Coin.COIN_500.getAmount())));
+		userMoney =
+			userMoney - 500*Math.min(userMoney / Coin.COIN_500.getAmount(), machineCoin.get(Coin.COIN_500.getAmount()));
+		repayment.put(Coin.COIN_100.getAmount(),
+			Math.min(userMoney / Coin.COIN_100.getAmount(), machineCoin.get(Coin.COIN_100.getAmount())));
+		userMoney =
+			userMoney - 100*Math.min(userMoney / Coin.COIN_100.getAmount(), machineCoin.get(Coin.COIN_100.getAmount()));
+		repayment.put(Coin.COIN_50.getAmount(),
+			Math.min(userMoney / Coin.COIN_50.getAmount(), machineCoin.get(Coin.COIN_50.getAmount())));
+		userMoney =
+			userMoney - 50*Math.min(userMoney / Coin.COIN_50.getAmount(), machineCoin.get(Coin.COIN_50.getAmount()));
+		repayment.put(Coin.COIN_10.getAmount(),
+			Math.min(userMoney / Coin.COIN_10.getAmount(), machineCoin.get(Coin.COIN_10.getAmount())));
+		userMoney =
+			userMoney - 10*Math.min(userMoney / Coin.COIN_10.getAmount(), machineCoin.get(Coin.COIN_10.getAmount()));
+
+		return repayment;
 	}
 
 }
