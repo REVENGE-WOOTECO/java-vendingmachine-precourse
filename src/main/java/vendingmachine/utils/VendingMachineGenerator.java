@@ -20,7 +20,7 @@ public class VendingMachineGenerator {
         return new VendingMachine(coins, beverages, money);
     }
 
-    public Coins registerMachineMoney() {
+    private Coins registerMachineMoney() {
         wrongInput = true;
         Coins coins = null;
         while (wrongInput) {
@@ -36,7 +36,7 @@ public class VendingMachineGenerator {
         return coins;
     }
 
-    public Beverages registerBeverages() {
+    private Beverages registerBeverages() {
         wrongInput = true;
         Beverages beverages = null;
         while (wrongInput) {
@@ -51,7 +51,7 @@ public class VendingMachineGenerator {
         return beverages;
     }
 
-    public Money registerCustomerMoney() {
+    private Money registerCustomerMoney() {
         wrongInput = true;
         Money money = null;
         while (wrongInput) {

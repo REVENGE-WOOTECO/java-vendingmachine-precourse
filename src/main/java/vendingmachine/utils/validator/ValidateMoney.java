@@ -11,11 +11,11 @@ public class ValidateMoney {
     public static final String ERROR_MONEY_NEGATIVE = "[ERROR] 금액으로 음수를 입력할 수 없습니다. 다시 입력해주세요.";
     public static final String ERROR_MONEY_UNIT = "[ERROR] 금액을 10원 단위로 입력해야합니다. 다시 입력해주세요.";
 
-    public static boolean isNotValidMoney(String machineMoney) {
+    public static boolean isNotValidMoney(String money) {
         try {
-            int machineMoneyValue = validateDigit(machineMoney);
-            validateNegative(machineMoneyValue);
-            validateMoneyUnit(machineMoneyValue);
+            int moneyValue = validateDigit(money);
+            validateNegative(moneyValue);
+            validateMoneyUnit(moneyValue);
             return false;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -31,13 +31,13 @@ public class ValidateMoney {
         }
     }
 
-    private static void validateNegative(int money) {
+    public static void validateNegative(int money) {
         if (money < NEGATIVE_ZERO) {
             throw new IllegalArgumentException(ERROR_MONEY_NEGATIVE);
         }
     }
 
-    private static void validateMoneyUnit(int money) {
+    public static void validateMoneyUnit(int money) {
         if (money % Coin.COIN_10.getAmount() != REMAINDER_ZERO) {
             throw new IllegalArgumentException(ERROR_MONEY_UNIT);
         }

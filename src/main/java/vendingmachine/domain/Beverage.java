@@ -2,6 +2,8 @@ package vendingmachine.domain;
 
 import java.util.Objects;
 
+import vendingmachine.utils.validator.ValidateBeverage;
+
 public class Beverage {
     public static final String ERROR_BEVERAGE_Sold_OUT = "[ERROR] 해당 상품은 품절입니다.";
 
@@ -10,10 +12,12 @@ public class Beverage {
     private int amount;
 
     public Beverage(String name, int price, int amount) {
+        ValidateBeverage.validatePriceRange(price);
+        ValidateBeverage.validatePriceUnit(price);
+        ValidateBeverage.validateAmount(amount);
         this.name = name;
         this.price = price;
         this.amount = amount;
-
     }
 
     public void BuyBeverage() {

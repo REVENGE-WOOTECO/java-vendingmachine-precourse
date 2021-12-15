@@ -22,9 +22,9 @@ public class ValidateBeverage {
             for (String beverage : beverages) {
                 validateRegex(beverage);
                 String[] beverageInfos = splitInfo(beverage);
-                validatePriceUnit(beverageInfos[PRICE_IDX]);
-                validatePriceRange(beverageInfos[PRICE_IDX]);
-                validateAmount(beverageInfos[AMOUNT_IDX]);
+                validatePriceUnit(Integer.parseInt(beverageInfos[PRICE_IDX]));
+                validatePriceRange(Integer.parseInt(beverageInfos[PRICE_IDX]));
+                validateAmount(Integer.parseInt(beverageInfos[AMOUNT_IDX]));
             }
             return false;
         } catch (IllegalArgumentException e) {
@@ -33,31 +33,31 @@ public class ValidateBeverage {
         return true;
     }
 
-    private static String[] splitInfo(String beverage) {
-        String beverageInfo = beverage.substring(SUBSTRING_IDX, beverage.length() - SUBSTRING_IDX);
-        return beverageInfo.split(COMMA_DETERMINE);
-    }
-
     private static void validateRegex(String beverage) {
         if (!beverage.matches(REGEX)) {
             throw new IllegalArgumentException(ERROR_BEVERAGE_INPUT);
         }
     }
 
-    private static void validatePriceUnit(String price) {
-        if (Integer.parseInt(price) % Coin.COIN_10.getAmount() != ZERO) {
+    private static String[] splitInfo(String beverage) {
+        String beverageInfo = beverage.substring(SUBSTRING_IDX, beverage.length() - SUBSTRING_IDX);
+        return beverageInfo.split(COMMA_DETERMINE);
+    }
+
+    public static void validatePriceUnit(int price) {
+        if (price % Coin.COIN_10.getAmount() != ZERO) {
             throw new IllegalArgumentException(ERROR_PRICE_UNIT);
         }
     }
 
-    private static void validatePriceRange(String price) {
-        if (Integer.parseInt(price) < MIN_PRICE) {
+    public static void validatePriceRange(int price) {
+        if (price < MIN_PRICE) {
             throw new IllegalArgumentException(ERROR_PRICE_RANGE);
         }
     }
 
-    private static void validateAmount(String amount) {
-        if (Integer.parseInt(amount) <= ZERO) {
+    public static void validateAmount(int amount) {
+        if (amount <= ZERO) {
             throw new IllegalArgumentException(ERROR_AMOUNT_RANGE);
         }
     }

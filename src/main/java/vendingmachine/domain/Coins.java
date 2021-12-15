@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import vendingmachine.utils.validator.ValidateMoney;
 
 public class Coins {
     public static final int DEFAULT_VALUE = 0;
@@ -12,6 +13,8 @@ public class Coins {
     private final Map<Coin, Integer> coins;
 
     public Coins(int machineMoney) {
+        ValidateMoney.validateNegative(machineMoney);
+        ValidateMoney.validateMoneyUnit(machineMoney);
         this.coins = createCoins(machineMoney);
     }
 
