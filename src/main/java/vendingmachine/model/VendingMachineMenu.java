@@ -1,6 +1,5 @@
 package vendingmachine.model;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -8,7 +7,7 @@ import java.util.regex.Pattern;
 public class VendingMachineMenu {
     private static final Pattern menuPattern = Pattern.compile("^\\[[ㄱ-ㅎ가-힣a-zA-Z]+,[\\d]+,[\\d]+]$");
 
-    private Set<Menu> menus;
+    private final Set<Menu> menus = new HashSet<>();
 
     public VendingMachineMenu(String inputMenu) {
         String[] menuArray = inputMenu.split(";");
