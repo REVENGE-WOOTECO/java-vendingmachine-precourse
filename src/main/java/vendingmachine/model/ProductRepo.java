@@ -51,4 +51,10 @@ public class ProductRepo {
 		quantityList.set(productIndex, quantityList.get(productIndex) - 1);
 	}
 
+	public void saveProduct(String[] productArray) {
+		ProductDTO productDTO = new ProductDTO(productArray[0], Integer.parseInt(productArray[1]),
+			Integer.parseInt(productArray[2]));
+		ProductRepo.getInstance().saveProduct(productDTO);
+	}
+
 }

@@ -11,4 +11,8 @@ public class Validators {
 	private boolean isDivisibleByTen(int money) {
 		return money % 10 == 0;
 	}
+
+	public boolean productPriceValidator(int price) {
+		return price >= 100 && isDivisibleByTen(price);
+	}
 }

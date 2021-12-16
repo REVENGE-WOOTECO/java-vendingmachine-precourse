@@ -1,9 +1,10 @@
 package vendingmachine.controller;
 
-import vendingmachine.model.ProductDTO;
 import vendingmachine.model.ProductRepo;
 
 public class InputParsers {
+
+	private Validators validator = new Validators();
 
 	public int parseToNumber(String checkMoney) {
 		try {
@@ -13,7 +14,7 @@ public class InputParsers {
 		}
 	}
 
-	public void parseProducts(String products) {
+	public void parseProduct(String products) {
 		try {
 			doParsing(products);
 		} catch (Exception e) {
@@ -21,20 +22,20 @@ public class InputParsers {
 		}
 	}
 
-	private void doParsing(String products) {
+	public void doParsing(String products) {
 		String[] productsArray = products.split(";");
 
 		for (String s : productsArray) {
 			String product = s.substring(1, s.length() - 1);
 			String[] productArray = product.split(",");
-			saveProduct(productArray);
+
+			if(!validator.productPriceValidator(Integer.parseInt(productArray[1]))){
+				throw new IllegalArgumentException();
+			}
+
+			ProductRepo.getInstance().saveProduct(productArray);
 		}
-
 	}
 
-	private void saveProduct(String[] productArray) {
-		ProductDTO productDTO = new ProductDTO(productArray[0], Integer.parseInt(productArray[1]),
-			Integer.parseInt(productArray[2]));
-		ProductRepo.getInstance().saveProduct(productDTO);
-	}
+
 }

@@ -52,7 +52,7 @@ public class VendingmachineController {
 	}
 
 	public void inputProducts(String products) {
-		parser.parseProducts(products);
+		parser.parseProduct(products);
 	}
 
 	public boolean isRepayment() {
