@@ -21,14 +21,15 @@ public class Menus {
     }
 
     public Menu buyMenu(String menuName) {
-        Menu menu = menus.stream()
+        Menu sale = menus.stream()
+                .filter(menu -> menu.getName().equals(menuName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다."));
-        int menuCount = menu.decreaseMenuCount();
+        int menuCount = sale.decreaseMenuCount();
         if (menuCount == 0) {
-            menus.remove(menu);
+            menus.remove(sale);
         }
-        return menu;
+        return sale;
     }
 
     public boolean isTerminate(InsertedMoney insertedMoney) {
