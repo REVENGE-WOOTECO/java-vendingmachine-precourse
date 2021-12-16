@@ -1,8 +1,11 @@
 package vendingmachine.model;
 
+import java.util.List;
+
 public class MoneyService {
-	public int deductMoney(String inputProductName, int userMoney) {
-		int productPrice = ProductRepo.getInstance().priceForProduct(inputProductName);
-		return userMoney - productPrice;
+	public boolean isLowPrice() {
+		List<Integer> priceList = ProductRepo.getInstance().getPriceList();
+		return priceList.stream()
+			.allMatch(registeredMoney -> registeredMoney > UserMoneyRepo.getInstance().getUserMoney());
 	}
 }

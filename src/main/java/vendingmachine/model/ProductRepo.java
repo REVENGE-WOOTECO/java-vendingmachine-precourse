@@ -13,9 +13,9 @@ public class ProductRepo {
 		return instance;
 	}
 
-	private List<String> nameList = new ArrayList<>();
-	private List<Integer> priceList = new ArrayList<>();
-	private List<Integer> quantityList = new ArrayList<>();
+	private final List<String> nameList = new ArrayList<>();
+	private final List<Integer> priceList = new ArrayList<>();
+	private final List<Integer> quantityList = new ArrayList<>();
 
 	public void saveProduct(ProductDTO dto) {
 		nameList.add(dto.getName());
@@ -35,17 +35,20 @@ public class ProductRepo {
 		return nameList;
 	}
 
-	public int priceForProduct(String product){
-		int productIndex = nameList.indexOf(product);
+	public int quantityforName(String productName) {
+		int productIndex = nameList.indexOf(productName);
+		return quantityList.get(productIndex);
+	}
+
+	public int priceForName(String productName) {
+		int productIndex = nameList.indexOf(productName);
 		return priceList.get(productIndex);
 	}
 
-	@Override
-	public String toString() {
-		return "ProductRepo{" +
-			"nameList=" + nameList.toString() +
-			", priceList=" + priceList.toString() +
-			", quantityList=" + quantityList.toString() +
-			'}';
+	public void reduceProduct(String inputProductName) {
+		int productIndex = ProductRepo.getInstance().getNameList().indexOf(inputProductName);
+		List<Integer> quantityList = ProductRepo.getInstance().getQuantityList();
+		quantityList.set(productIndex, quantityList.get(productIndex) - 1);
 	}
+
 }
