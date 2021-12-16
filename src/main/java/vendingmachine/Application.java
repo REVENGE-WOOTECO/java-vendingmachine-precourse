@@ -1,10 +1,10 @@
 package vendingmachine;
 
-import vendingmachine.view.VendingmachineView;
+import vendingmachine.view.VendingMachineView;
 
 public class Application {
 	public static void main(String[] args) {
-		VendingmachineView vendingmachineView = new VendingmachineView();
+		VendingMachineView vendingmachineView = new VendingMachineView();
 		vendingmachineView.startMachine();
 	}
 }

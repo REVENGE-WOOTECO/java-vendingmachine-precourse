@@ -12,7 +12,7 @@ import vendingmachine.model.ProductRepo;
 import vendingmachine.model.ProductService;
 import vendingmachine.model.UserMoneyRepo;
 
-public class VendingmachineController {
+public class VendingMachineController {
 
 	private final Validators validator = new Validators();
 	private final InputParsers parser = new InputParsers();
@@ -65,7 +65,7 @@ public class VendingmachineController {
 			throw new IllegalArgumentException();
 		}
 
-		if (ProductRepo.getInstance().quantityforName(inputProductName) == 0
+		if (ProductRepo.getInstance().quantityForName(inputProductName) == 0
 			|| ProductRepo.getInstance().priceForName(inputProductName) > UserMoneyRepo.getInstance().getUserMoney()) {
 			throw new IllegalArgumentException();
 		}

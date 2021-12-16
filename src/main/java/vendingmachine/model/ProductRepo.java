@@ -35,7 +35,7 @@ public class ProductRepo {
 		return nameList;
 	}
 
-	public int quantityforName(String productName) {
+	public int quantityForName(String productName) {
 		int productIndex = nameList.indexOf(productName);
 		return quantityList.get(productIndex);
 	}

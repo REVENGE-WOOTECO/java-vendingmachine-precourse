@@ -3,12 +3,12 @@ package vendingmachine.view;
 import java.util.HashMap;
 
 import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.controller.VendingmachineController;
+import vendingmachine.controller.VendingMachineController;
 import vendingmachine.model.Coin;
 import vendingmachine.model.MachineMoneyRepo;
 import vendingmachine.model.UserMoneyRepo;
 
-public class VendingmachineView {
+public class VendingMachineView {
 
 	private static final String REQUEST_VENDINGMACHINE_HOLDING_AMOUNT = "자판기가 보유하고 있는 금액을 입력해 주세요.";
 	private static final String ERROR_MESSAGE_WRONG_HOLDING_AMOUNT = "[ERROR] 금액은 10단위의 숫자여야 합니다.";
@@ -21,7 +21,7 @@ public class VendingmachineView {
 	private static final String ERROR_MESSAGE_NOT_EXIST_PRODUCT = "[ERROR] 해당 상품은 구매할 수 없습니다.";
 	private static final String MESSAGE_REPAYMENT = "잔돈";
 
-	private final VendingmachineController vendingmachineController = new VendingmachineController();
+	private final VendingMachineController vendingmachineController = new VendingMachineController();
 	private final MachineMoneyRepo mRepo = MachineMoneyRepo.getInstance();
 
 	public void startMachine() {
