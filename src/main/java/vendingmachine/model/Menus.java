@@ -20,7 +20,7 @@ public class Menus {
         }
     }
 
-    public void buyMenu(String menuName) {
+    public Menu buyMenu(String menuName) {
         Menu menu = menus.stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다."));
@@ -28,7 +28,9 @@ public class Menus {
         if (menuCount == 0) {
             menus.remove(menu);
         }
+        return menu;
     }
+
     public boolean isTerminate(InsertedMoney insertedMoney) {
         if (isAllMenuSoldOut()) {
             return true;
