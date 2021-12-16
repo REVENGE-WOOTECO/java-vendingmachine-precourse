@@ -113,7 +113,7 @@ public class VendingmachineView {
 
 	private void printInputAmountMessage(String message){
 		System.out.println();
-		System.out.println("투입금액: " + UserMoneyRepo.getInstance().getUserMoney() + "원");
+		System.out.println("투입 금액: " + UserMoneyRepo.getInstance().getUserMoney() + "원");
 		System.out.println(message);
 	}
 }
