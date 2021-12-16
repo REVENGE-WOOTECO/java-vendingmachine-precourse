@@ -18,7 +18,6 @@ public class OutputView {
         for (Coin coin : Coin.values()) {
             System.out.println(coin.getAmount()+"원 - "+ holdingCoins.getCoinCount(coin) + "개");
         }
-        System.out.println();
     }
 
     public static void printRequestMenuMessage() {
