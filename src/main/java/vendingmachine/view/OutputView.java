@@ -41,7 +41,7 @@ public class OutputView {
 
     public static void printCurrentMoney(InsertedMoney insertedMoney) {
         System.out.println();
-        System.out.println("투입 금액: " + insertedMoney.getInsertedMoney());
+        System.out.println("투입 금액: " + insertedMoney.getInsertedMoney()+"원");
     }
 
     public static void printReturnChangesWithMinimumCount(Map<Coin, Integer> changes) {
