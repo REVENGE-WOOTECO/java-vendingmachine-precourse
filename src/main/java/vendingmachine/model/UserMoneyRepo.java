@@ -5,7 +5,7 @@ public class UserMoneyRepo {
 	private UserMoneyRepo() {
 	}
 
-	private static UserMoneyRepo instance = new UserMoneyRepo();
+	private static final UserMoneyRepo instance = new UserMoneyRepo();
 
 	public static UserMoneyRepo getInstance() {
 		return instance;

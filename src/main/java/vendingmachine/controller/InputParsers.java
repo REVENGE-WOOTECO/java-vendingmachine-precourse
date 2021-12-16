@@ -4,7 +4,7 @@ import vendingmachine.model.ProductRepo;
 
 public class InputParsers {
 
-	private Validators validator = new Validators();
+	private final Validators validator = new Validators();
 
 	public int parseToNumber(String checkMoney) {
 		try {

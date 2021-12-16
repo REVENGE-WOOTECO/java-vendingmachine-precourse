@@ -6,7 +6,7 @@ public class MachineMoneyRepo {
 	private MachineMoneyRepo() {
 	}
 
-	private static MachineMoneyRepo instance = new MachineMoneyRepo();
+	private static final MachineMoneyRepo instance = new MachineMoneyRepo();
 
 	public static MachineMoneyRepo getInstance() {
 		return instance;

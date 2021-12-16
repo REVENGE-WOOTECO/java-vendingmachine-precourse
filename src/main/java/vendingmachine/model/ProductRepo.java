@@ -7,7 +7,7 @@ public class ProductRepo {
 	private ProductRepo() {
 	}
 
-	private static ProductRepo instance = new ProductRepo();
+	private static final ProductRepo instance = new ProductRepo();
 
 	public static ProductRepo getInstance() {
 		return instance;
