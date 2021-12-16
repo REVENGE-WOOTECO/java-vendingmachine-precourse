@@ -1,12 +1,12 @@
 package vendingmachine.model;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 public class VendingMachineMenu {
     private static final Pattern menuPattern = Pattern.compile("^\\[[ㄱ-ㅎ가-힣a-zA-Z]+,[\\d]+,[\\d]+]$");
-    private static final String exceptSpecialChar = "[^\uAC00-\uD7A30-9a-zA-Z]";
 
     private Set<Menu> menus;
 
@@ -26,7 +26,7 @@ public class VendingMachineMenu {
     }
 
     private String deleteBrackets(String menu) {
-        return menu.replaceAll(exceptSpecialChar, "");
+        return menu.substring(1, menu.length() - 2);
     }
 
     public Set<Menu> getMenus() {
