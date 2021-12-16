@@ -10,7 +10,7 @@ import vendingmachine.model.UserMoneyRepo;
 
 public class VendingMachineView {
 
-	private static final String REQUEST_VENDINGMACHINE_HOLDING_AMOUNT = "자판기가 보유하고 있는 금액을 입력해 주세요.";
+	private static final String REQUEST_VENDING_MACHINE_HOLDING_AMOUNT = "자판기가 보유하고 있는 금액을 입력해 주세요.";
 	private static final String ERROR_MESSAGE_WRONG_HOLDING_AMOUNT = "[ERROR] 금액은 10단위의 숫자여야 합니다.";
 	private static final String MESSAGE_COIN_AMOUNT = "자판기가 보유한 동전";
 	private static final String REQUEST_PRODUCT_NAME_PRICE_QUANTITY = "상품명과 가격, 수량을 입력해 주세요.";
@@ -41,7 +41,7 @@ public class VendingMachineView {
 
 	private void inputMachineMoney() {
 		while (true) {
-			System.out.println(REQUEST_VENDINGMACHINE_HOLDING_AMOUNT);
+			System.out.println(REQUEST_VENDING_MACHINE_HOLDING_AMOUNT);
 			try {
 				vendingmachineController.setMachineMoney(Console.readLine());
 				break;
