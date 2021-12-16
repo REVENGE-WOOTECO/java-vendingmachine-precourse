@@ -56,5 +56,6 @@ public class VendingMachineController {
             OutputView.printRequestMenuName();
             currentMoney.buyMenu(menus.buyMenu(InputView.userInput()));
         }
+        OutputView.printCurrentMoney(currentMoney);
     }
 }
