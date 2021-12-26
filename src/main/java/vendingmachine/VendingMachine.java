@@ -76,7 +76,7 @@ public class VendingMachine {
     }
 
     private void showResult() {
-        Map<Integer, Integer> smallChangeMap = coinRepository.showSmallChange(smallChange);
+        Map<Integer, Integer> smallChangeMap = coinRepository.getSmallChange(smallChange);
         PrintView.printResultMoreThanZero();
         PrintView.printSmallChange(smallChangeMap);
     }

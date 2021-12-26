@@ -41,7 +41,7 @@ public class CoinRepository {
         return savedCoin;
     }
 
-    public Map<Integer, Integer> showSmallChange(int smallChange) {
+    public Map<Integer, Integer> getSmallChange(int smallChange) {
         Map<Integer, Integer> changeMap = new LinkedHashMap<>();
         for (int coinValue : savedCoin.keySet()) {
             if (smallChange == ZERO_WON) {
