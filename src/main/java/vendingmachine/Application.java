@@ -1,7 +1,12 @@
 package vendingmachine;
 
+import java.util.ArrayList;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        VendingMachine vendingMachine = VendingMachine.from(new ArrayList<>());
+        vendingMachine.showCoinStatus();
+        vendingMachine.makeOrderList();
+        vendingMachine.requestOrder();
     }
 }
