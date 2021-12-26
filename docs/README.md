@@ -50,7 +50,7 @@
 - [X] ``VendingMachine``의 items : 일급 컬렉션 또는 ItemRepository 생성 및 컬렉션 조작 메서드 옮기기
 - [ ] ``VendingMachine``의 makeOrderList 메서드 : ``InputValidator``의 검증 부분을 각 객체로 옮기고 장단점 고려. split 부분을 도메인으로 옮기기
 - [X] 출력 부분은 모두 ``PrintView``로 옮겨서 통일하기
-- [ ] ``CoinReposiroty``의 변수명 변경(30번째 줄)
+- [X] ``CoinReposiroty``의 변수명 변경(30번째 줄)
 - [ ] ``CoinReposiroty``의 showSmallChange 메서드 리팩토링
 - [ ] 보일러 플레이트 코드 관리(비즈니스 로직을 상위로 노출)
 - [ ] Constant 남용 fix

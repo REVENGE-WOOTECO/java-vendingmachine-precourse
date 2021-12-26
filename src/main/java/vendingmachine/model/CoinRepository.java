@@ -27,9 +27,9 @@ public class CoinRepository {
     }
 
     private static void makeRandomSavedCoin(Map<Integer, Integer> coinMap, int coin) {
-        List<Integer> randomList = Coin.showCoinList();
+        List<Integer> coinList = Coin.showCoinList();
         while (coin != ZERO_WON) {
-            int randomCoinValue = Randoms.pickNumberInList(randomList);
+            int randomCoinValue = Randoms.pickNumberInList(coinList);
             if (coin >= randomCoinValue) {
                 coinMap.put(randomCoinValue, coinMap.get(randomCoinValue) + 1);
                 coin -= randomCoinValue;
