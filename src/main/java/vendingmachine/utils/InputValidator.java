@@ -10,6 +10,7 @@ public class InputValidator {
     private static final String REGEX_FOR_NUMBER = "^[\\d]+";
     private static final String REGEX_FOR_ITEM_INFO = "^\\[[ㄱ-ㅎ가-힣a-zA-Z]+,[\\d]+,[\\d]+]$";
     private static final String REGEX_FOR_STRING_NAME = "^[ㄱ-ㅎ가-힣a-zA-Z]+";
+    private static final int DIVIDED_VALUE = 10;
 
     private static final Pattern patternForNumber = Pattern.compile(REGEX_FOR_NUMBER);
     private static final Pattern patternForItemInfo = Pattern.compile(REGEX_FOR_ITEM_INFO);

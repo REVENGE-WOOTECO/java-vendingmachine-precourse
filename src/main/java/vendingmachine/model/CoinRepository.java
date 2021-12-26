@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class CoinRepository {
     private final Map<Integer, Integer> savedCoin;
+    private static final int ZERO_WON = 0;
 
     private CoinRepository(Map<Integer, Integer> savedCoin) {
         this.savedCoin = savedCoin;
