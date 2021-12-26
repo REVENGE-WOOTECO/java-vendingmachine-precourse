@@ -83,15 +83,15 @@ public class VendingMachine {
 
     private boolean isImpossibleItemForOrder(String itemName) {
         if(!isContain(itemName)) {
-            System.out.println("[ERROR] 없는 Item 입니다. 확인 후 입력해주세요.");
+            PrintView.printNoContain();
             return true;
         }
         if (!isEnoughMoney(itemName)) {
-            System.out.println("[ERROR] 금액이 부족합니다. ");
+            PrintView.printNoEnoughMoney();
             return true;
         }
         if (!isEnoughQuantity(itemName)) {
-            System.out.println("[ERROR] 재고가 부족합니다. ");
+            PrintView.printNoEnoughQuantity();
             return true;
         }
         return false;

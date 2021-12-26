@@ -36,4 +36,16 @@ public class PrintView {
     public static void printResultMoreThanZero() {
         System.out.println("잔돈");
     }
+
+    public static void printNoContain() {
+        System.out.println("[ERROR] 없는 Item 입니다. 확인 후 입력해주세요.");
+    }
+
+    public static void printNoEnoughMoney() {
+        System.out.println("[ERROR] 금액이 부족합니다. ");
+    }
+
+    public static void printNoEnoughQuantity() {
+        System.out.println("[ERROR] 재고가 부족합니다. ");
+    }
 }
