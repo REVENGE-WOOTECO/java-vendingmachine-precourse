@@ -53,8 +53,8 @@
 - [X] ``CoinRepository``의 변수명 변경(30번째 줄)
 - [ ] ``CoinRepository``의 showSmallChange 메서드 리팩토링
 - [ ] 보일러 플레이트 코드 관리(비즈니스 로직을 상위로 노출)
-- [ ] Constant 남용 fix
-- [ ] 정규식 패턴 naming 변경
+- [X] Constant 남용 fix
+- [X] 정규식 패턴 naming 변경
 - [ ] public 메서드 상위로 이동
 
 <br>

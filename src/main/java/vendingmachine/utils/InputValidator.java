@@ -12,9 +12,9 @@ public class InputValidator {
     private static final String REGEX_FOR_STRING_NAME = "^[ㄱ-ㅎ가-힣a-zA-Z]+";
     private static final int DIVIDED_VALUE = 10;
 
-    private static final Pattern patternForNumber = Pattern.compile(REGEX_FOR_NUMBER);
-    private static final Pattern patternForItemInfo = Pattern.compile(REGEX_FOR_ITEM_INFO);
-    private static final Pattern patternForStringName = Pattern.compile(REGEX_FOR_STRING_NAME);
+    private static final Pattern ONLY_DIGIT_PATTERN = Pattern.compile(REGEX_FOR_NUMBER);
+    private static final Pattern ONLY_ITEM_INFO_PATTERN = Pattern.compile(REGEX_FOR_ITEM_INFO);
+    private static final Pattern ONLY_ITEM_NAME_PATTERN = Pattern.compile(REGEX_FOR_STRING_NAME);
 
     public static boolean isNotValidInputMoney(String input) {
         if (isNotValidNumber(input)) {
@@ -37,7 +37,7 @@ public class InputValidator {
     }
 
     private static void requestValidationToNumberPattern(String input) {
-        if (!patternForNumber.matcher(input).matches()) {
+        if (!ONLY_DIGIT_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 0 이상의 숫자만 입력하세요.");
         }
     }
@@ -81,7 +81,7 @@ public class InputValidator {
     }
 
     private static void requestValidationToItemPattern(String unitItemInfo) {
-        if (!patternForItemInfo.matcher(unitItemInfo).matches()) {
+        if (!ONLY_ITEM_INFO_PATTERN.matcher(unitItemInfo).matches()) {
             throw new IllegalArgumentException("[ERROR] 올바른 패턴을 입력하세요. 예시는 다음과 같습니다 : [사이다,1000,10]");
         }
     }
@@ -129,7 +129,7 @@ public class InputValidator {
     }
 
     private static void requestValidationToStringNamePattern(String input) {
-        if (!patternForStringName.matcher(input).matches()) {
+        if (!ONLY_ITEM_NAME_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 상품명은 영문 또는 한글로만 입력하세요.");
         }
     }
